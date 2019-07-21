@@ -37,6 +37,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnalisadorLexico.cs" />
+    <Compile Include="AnalisadorSintatico.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Token.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

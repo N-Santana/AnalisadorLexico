@@ -1,61 +1,79 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AnalisadorLexico
 {
     public class AnalisadorLexico
     {
-        public int ID { get; set; }
-        public int OPER { get; set; }
-        public int ERROR { get; set; }
-        public int NUM { get; set; }
-        public int Pos { get; set; }
-        public char[] Content { get; set; }
+        private String[] reservedWords = { "programa", "declare", "inicio", "fim", "escreva", "leia", "se", "entao", "fimse" };
+        private char[] Content;
+        private int Pos;
 
-        public AnalisadorLexico(char[] content)
+        public AnalisadorLexico(String path)
         {
-            Pos = 0;
-            ID = 1;
-            NUM = 2;
-            OPER = 3;
-            ERROR = -1;
+            try
+            {
+                Pos = 0;
+                byte[] bContent = File.ReadAllBytes(path);
+                Content = Encoding.Unicode.GetChars(bContent);
 
-            this.Content = content;
+            } catch (IOException ex)
+            {
+                Console.Error.WriteLine("Erro ao ler o arquivo:\n" + ex.Message);
+            }
+
         }
 
-        private char NextChar()
+        private Boolean isReservedWord(String text)
+        {
+            foreach (string rw in reservedWords)
+            {
+                if (text.Equals(rw)) return true;
+            }
+            return false;
+        }
+
+        private char nextChar()
         {
             return Content[Pos++];
         }
 
-        private Boolean IsLetter(char c)
+        private Boolean isLetter(char c)
         {
             if (c >= 'a' && c <= 'z') return true;
             return false;
         }
 
-        private Boolean IsNumber(char c)
+        private Boolean isDigit(char c)
         {
             if (c >= '0' && c <= '9') return true;
             return false;
         }
 
-        private Boolean IsOperator(char c)
+        private Boolean isComma(char c)
         {
-            if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') return true;
+            return c == ',';
+        }
+
+        private Boolean isBlank(char c)
+        {
+            return c == ' ' || c == '\n' || c == '\t' || c == '\r';
+        }
+
+        private Boolean isOperator(char c)
+        {
+            if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '>' || c == '<' || c == '=') return true;
             return false;
         }
 
-        private Boolean IsPontuation(char c)
+        private Boolean isPontuation(char c)
         {
-            if (c == ' ' || c == ';' || c == '.' || c == '\n' || c == '\t' || c == '\r') return true;
+            if (c == ';' || c == '.') return true;
             return false;
         }
 
-        private void Rollback()
+        private void rollback()
         {
             Pos--;
         }
@@ -65,6 +83,70 @@ namespace AnalisadorLexico
             return Pos == Content.Length;
         }
 
+        public Token nextToken()
+        {
+            int s = 0;
+            String text = "";
+            char c;
+            //Token token;
+
+            while (!EOF()){
+                switch(s)
+                {
+                    case 0:
+                        c = nextChar();
+                        if (isBlank(c)) s = 0;
+                        else if (isLetter(c))
+                        {
+                            s = 1;
+                            text += c;
+                        }
+                        else if (isOperator(c))
+                        {
+                            text += c;
+                            s = 2;
+                        }
+                        else if (isPontuation(c))
+                        {
+                            text += c;
+                            s = 3;
+                        }
+                        else if (isComma(c))
+                        {
+                            text += c;
+                            s = 4;
+                        }
+                        else return new Token(Token.EOF, " ");
+                        break;
+                    case 1:
+                        c = nextChar();
+                        if (isLetter(c) || isDigit(c))
+                        {
+                            s = 1;
+                            text += c;
+                        }
+                        else if (isBlank(c))
+                        {
+                            if (isReservedWord(text)) return new Token(Token.RESERVED_WORD, text);
+                            return new Token(Token.ID, text);
+                        }
+                        else if (isOperator(c))
+                        {
+                            rollback();
+                            return new Token(Token.ID, text);
+                        }
+                        else return new Token(Token.EOF, " "); ;
+                        break;
+                    case 2:
+                        return new Token(Token.OPERATOR, text);
+                    case 3:
+                        return new Token(Token.PONTUACTION, text);
+                    case 4:
+                        return new Token(Token.COMMA, text);
+                }
+            }
+            return new Token(Token.EOF, " ");
+        }
 
     }
 }
