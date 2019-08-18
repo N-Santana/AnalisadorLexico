@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Isicomp.g4 by ANTLR 4.7.2
+// Generated from .\Isicomp.g4 by ANTLR 4.7.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -19,165 +19,212 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
+
 using Antlr4.Runtime.Misc;
-using IParseTreeListener = Antlr4.Runtime.Tree.IParseTreeListener;
+using IErrorNode = Antlr4.Runtime.Tree.IErrorNode;
+using ITerminalNode = Antlr4.Runtime.Tree.ITerminalNode;
 using IToken = Antlr4.Runtime.IToken;
+using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 
 /// <summary>
-/// This interface defines a complete listener for a parse tree produced by
-/// <see cref="IsicompParser"/>.
+/// This class provides an empty implementation of <see cref="IIsicompListener"/>,
+/// which can be extended to create a listener which only needs to handle a subset
+/// of the available methods.
 /// </summary>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.7.2")]
 [System.CLSCompliant(false)]
-public interface IIsicompListener : IParseTreeListener {
+public partial class IsicompBaseListener : IIsicompListener {
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.programa"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterPrograma([NotNull] IsicompParser.ProgramaContext context);
+	public virtual void EnterPrograma([NotNull] IsicompParser.ProgramaContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.programa"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitPrograma([NotNull] IsicompParser.ProgramaContext context);
+	public virtual void ExitPrograma([NotNull] IsicompParser.ProgramaContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.declare"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterDeclare([NotNull] IsicompParser.DeclareContext context);
+	public virtual void EnterDeclare([NotNull] IsicompParser.DeclareContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.declare"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitDeclare([NotNull] IsicompParser.DeclareContext context);
+	public virtual void ExitDeclare([NotNull] IsicompParser.DeclareContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.blococomando"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterBlococomando([NotNull] IsicompParser.BlococomandoContext context);
+	public virtual void EnterBlococomando([NotNull] IsicompParser.BlococomandoContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.blococomando"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitBlococomando([NotNull] IsicompParser.BlococomandoContext context);
+	public virtual void ExitBlococomando([NotNull] IsicompParser.BlococomandoContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.comando"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterComando([NotNull] IsicompParser.ComandoContext context);
+	public virtual void EnterComando([NotNull] IsicompParser.ComandoContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.comando"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitComando([NotNull] IsicompParser.ComandoContext context);
+	public virtual void ExitComando([NotNull] IsicompParser.ComandoContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.exp_ter"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterExp_ter([NotNull] IsicompParser.Exp_terContext context);
+	public virtual void EnterExp_ter([NotNull] IsicompParser.Exp_terContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.exp_ter"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitExp_ter([NotNull] IsicompParser.Exp_terContext context);
+	public virtual void ExitExp_ter([NotNull] IsicompParser.Exp_terContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.exp_fat"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterExp_fat([NotNull] IsicompParser.Exp_fatContext context);
+	public virtual void EnterExp_fat([NotNull] IsicompParser.Exp_fatContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.exp_fat"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitExp_fat([NotNull] IsicompParser.Exp_fatContext context);
+	public virtual void ExitExp_fat([NotNull] IsicompParser.Exp_fatContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.exp_relacional"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterExp_relacional([NotNull] IsicompParser.Exp_relacionalContext context);
+	public virtual void EnterExp_relacional([NotNull] IsicompParser.Exp_relacionalContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.exp_relacional"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitExp_relacional([NotNull] IsicompParser.Exp_relacionalContext context);
+	public virtual void ExitExp_relacional([NotNull] IsicompParser.Exp_relacionalContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.termo"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterTermo([NotNull] IsicompParser.TermoContext context);
+	public virtual void EnterTermo([NotNull] IsicompParser.TermoContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.termo"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitTermo([NotNull] IsicompParser.TermoContext context);
+	public virtual void ExitTermo([NotNull] IsicompParser.TermoContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.se"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterSe([NotNull] IsicompParser.SeContext context);
+	public virtual void EnterSe([NotNull] IsicompParser.SeContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.se"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitSe([NotNull] IsicompParser.SeContext context);
+	public virtual void ExitSe([NotNull] IsicompParser.SeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.atribua"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAtribua([NotNull] IsicompParser.AtribuaContext context);
+	public virtual void EnterAtribua([NotNull] IsicompParser.AtribuaContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.atribua"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAtribua([NotNull] IsicompParser.AtribuaContext context);
+	public virtual void ExitAtribua([NotNull] IsicompParser.AtribuaContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.escreva"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterEscreva([NotNull] IsicompParser.EscrevaContext context);
+	public virtual void EnterEscreva([NotNull] IsicompParser.EscrevaContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.escreva"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitEscreva([NotNull] IsicompParser.EscrevaContext context);
+	public virtual void ExitEscreva([NotNull] IsicompParser.EscrevaContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.leia"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterLeia([NotNull] IsicompParser.LeiaContext context);
+	public virtual void EnterLeia([NotNull] IsicompParser.LeiaContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.leia"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitLeia([NotNull] IsicompParser.LeiaContext context);
+	public virtual void ExitLeia([NotNull] IsicompParser.LeiaContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.enquanto"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterEnquanto([NotNull] IsicompParser.EnquantoContext context);
+	public virtual void EnterEnquanto([NotNull] IsicompParser.EnquantoContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.enquanto"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitEnquanto([NotNull] IsicompParser.EnquantoContext context);
+	public virtual void ExitEnquanto([NotNull] IsicompParser.EnquantoContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.faca"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFaca([NotNull] IsicompParser.FacaContext context);
+	public virtual void EnterFaca([NotNull] IsicompParser.FacaContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.faca"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFaca([NotNull] IsicompParser.FacaContext context);
+	public virtual void ExitFaca([NotNull] IsicompParser.FacaContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="IsicompParser.string"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterString([NotNull] IsicompParser.StringContext context);
+	public virtual void EnterString([NotNull] IsicompParser.StringContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by <see cref="IsicompParser.string"/>.
+	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitString([NotNull] IsicompParser.StringContext context);
+	public virtual void ExitString([NotNull] IsicompParser.StringContext context) { }
+
+	/// <inheritdoc/>
+	/// <remarks>The default implementation does nothing.</remarks>
+	public virtual void EnterEveryRule([NotNull] ParserRuleContext context) { }
+	/// <inheritdoc/>
+	/// <remarks>The default implementation does nothing.</remarks>
+	public virtual void ExitEveryRule([NotNull] ParserRuleContext context) { }
+	/// <inheritdoc/>
+	/// <remarks>The default implementation does nothing.</remarks>
+	public virtual void VisitTerminal([NotNull] ITerminalNode node) { }
+	/// <inheritdoc/>
+	/// <remarks>The default implementation does nothing.</remarks>
+	public virtual void VisitErrorNode([NotNull] IErrorNode node) { }
 }

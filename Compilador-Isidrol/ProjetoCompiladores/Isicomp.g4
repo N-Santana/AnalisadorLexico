@@ -1,5 +1,9 @@
 grammar Isicomp;
 
+    options
+    {
+    language = CSharp;
+    }
 //--------------- SINTAXE CODIGO -------------------
 
 programa : 'programa' declare blococomando 'fimprog' T_DOT;
@@ -32,7 +36,7 @@ enquanto : 'enquanto' T_APARENT exp_relacional T_FPARENT T_ACHAVE blococomando T
 
 faca : 'faca' T_ACHAVE blococomando T_FCHAVE 'enquanto' T_APARENT exp_relacional T_FPARENT T_DOT;
 
-string : T_ASPAS (LETTER | NUM | WS)+ T_ASPAS;
+string : T_ASPAS (LETTER | NUM  |  WS)+ T_ASPAS;
 
 //-------------------- DEFINIÇÕES -------------------
 
@@ -110,5 +114,4 @@ T_DIF : '!=';
 
 //--------------------- TABULAÇÃO -------------------
 
-WS : [\t\r\n]+ -> skip; // pula espaços, tabs, novas linhas
-
+WS : [ \t\r\n]+ -> skip ;   // pula espaços, tabs, novas linhas
