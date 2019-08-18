@@ -2,9 +2,11 @@ grammar Isicomp;
 
 //--------------- SINTAXE CODIGO -------------------
 
-programa : 'programa' declare comando+ 'fimprog' T_DOT;
+programa : 'programa' declare blococomando 'fimprog' T_DOT;
 
 declare : 'declare' ID (T_COMMA ID)* T_DOT;
+
+blococomando : (comando)+;
 
 comando : leia | escreva | atribua | se | enquanto | faca ;
 
@@ -14,22 +16,23 @@ exp_ter : exp_fat (OPER_TER exp_fat)*;
 
 exp_fat : NUM (OPER_FAT termo)*;
 
-exp_relacional : NUM OPE_RELAC NUM;
+exp_relacional : (ID | NUM) OPE_RELAC (ID | NUM);
 
 termo : NUM | ID | T_APARENT exp_ter T_FPARENT ; 
 
-se : 'se' T_APARENT exp_relacional T_FPARENT T_ACHAVE comando+ T_FCHAVE ('senao' T_ACHAVE comando+ T_FCHAVE)?;
+se : 'se' T_APARENT exp_relacional T_FPARENT 'entao' blococomando  ('senao' 'entao' blococomando )?;
 
 atribua : ID T_IGUAL exp_ter T_DOT; 
 
-escreva : 'escreva' T_APARENT ID T_FPARENT;
+escreva : 'escreva' T_APARENT (ID | string) T_FPARENT T_DOT;
 
-leia : ;
+leia : 'leia' T_APARENT ID T_FPARENT T_DOT;
 
-enquanto : ;
+enquanto : 'enquanto' T_APARENT exp_relacional T_FPARENT T_ACHAVE blococomando T_FCHAVE;
 
-faca : ;
+faca : 'faca' T_ACHAVE blococomando T_FCHAVE 'enquanto' T_APARENT exp_relacional T_FPARENT T_DOT;
 
+string : T_ASPAS (LETTER | NUM | WS)+ T_ASPAS;
 
 //-------------------- DEFINIÇÕES -------------------
 
@@ -43,11 +46,11 @@ OPER_FAT : T_DIV | T_MULT;
 
 PONTUACAO : T_COMMA | T_APARENT | T_FPARENT | T_DOT | T_UNDERS;
 
-NUM : DIGIT+ (T_COMMA DIGIT+)?;
+NUM : (DIGIT)+ (T_COMMA (DIGIT)+)?;
 
 OPE_RELAC : T_MAIOR | T_MENOR | T_MENOR_IGUAL | T_MAIOR_IGUAL | T_IGUAL_RELAC | T_DIF | T_IGUAL;
 
-DIGIT : [0-9]+;
+DIGIT : ([0-9])+;
 
 LETTER : ([a-z ]| [A-Z])+;
 
@@ -86,6 +89,8 @@ T_COMMA : ',';
 T_APARENT : '(';
 
 T_FPARENT : ')';
+
+T_ASPAS : '"';
 
 T_DOT : '.';
 
