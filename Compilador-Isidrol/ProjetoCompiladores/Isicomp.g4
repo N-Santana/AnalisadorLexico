@@ -4,11 +4,12 @@ grammar Isicomp;
     {
     language = CSharp;
     }
+
 //--------------- SINTAXE CODIGO -------------------
 
-programa : 'programa' declare blococomando 'fimprog' T_DOT;
+programa : 'programa' (WS)? declare (WS)? blococomando (WS)? 'fimprog' T_DOT;
 
-declare : 'declare' ID (T_COMMA ID)* T_DOT;
+declare : 'declare' (WS)? ID (T_COMMA ID)* T_DOT;
 
 blococomando : (comando)+;
 
@@ -40,7 +41,7 @@ string : T_ASPAS (LETTER | NUM  |  WS)+ T_ASPAS;
 
 //-------------------- DEFINIÇÕES -------------------
 
-FORMAT : T_STRING | T_CHAR | T_BYTE | T_INT | T_FLOAT | T_DOUBLE;
+FORMAT : T_STRING | T_INT | T_FLOAT;
 
 ID : (LETTER)+ (DIGIT | LETTER)*;
 
@@ -64,15 +65,9 @@ T_NULL : 'nulo';
 
 T_STRING : 'string';
 
-T_CHAR : 'char';
-
-T_BYTE : 'byte';
-
 T_INT : 'int';
 
 T_FLOAT : 'float';
-
-T_DOUBLE : 'double';
 
 T_SOMA : '+';
 
@@ -114,4 +109,4 @@ T_DIF : '!=';
 
 //--------------------- TABULAÇÃO -------------------
 
-WS : [ \t\r\n]+ -> skip ;   // pula espaços, tabs, novas linhas
+WS : (' ' | '\t' | '\r' | '\n')+ -> skip ;   // pula espaços, tabs, novas linhas

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isicomp", "Isicomp\Isicomp.csproj", "{EAA1CC4A-DB70-400B-B636-87567421A1C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAA1CC4A-DB70-400B-B636-87567421A1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAA1CC4A-DB70-400B-B636-87567421A1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAA1CC4A-DB70-400B-B636-87567421A1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAA1CC4A-DB70-400B-B636-87567421A1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8729330C-1EA1-4677-8575-554B59964C3A}
+	EndGlobalSection
+EndGlobal

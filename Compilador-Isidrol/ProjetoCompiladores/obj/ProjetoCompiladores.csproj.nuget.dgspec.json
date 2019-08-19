@@ -1,30 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ramon\\Desktop\\Projeto Compiladores\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\ProjetoCompiladores.csproj": {}
+    "C:\\Users\\ailat\\Documents\\DEV\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\ProjetoCompiladores.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ramon\\Desktop\\Projeto Compiladores\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\ProjetoCompiladores.csproj": {
+    "C:\\Users\\ailat\\Documents\\DEV\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\ProjetoCompiladores.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ramon\\Desktop\\Projeto Compiladores\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\ProjetoCompiladores.csproj",
+        "projectUniqueName": "C:\\Users\\ailat\\Documents\\DEV\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\ProjetoCompiladores.csproj",
         "projectName": "ProjetoCompiladores",
-        "projectPath": "C:\\Users\\ramon\\Desktop\\Projeto Compiladores\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\ProjetoCompiladores.csproj",
-        "packagesPath": "C:\\Users\\ramon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ramon\\Desktop\\Projeto Compiladores\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\obj\\",
+        "projectPath": "C:\\Users\\ailat\\Documents\\DEV\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\ProjetoCompiladores.csproj",
+        "packagesPath": "C:\\Users\\ailat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ailat\\Documents\\DEV\\AnalisadorLexico\\Compilador-Isidrol\\ProjetoCompiladores\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ramon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\ailat\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

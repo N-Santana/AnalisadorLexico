@@ -1,0 +1,12 @@
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Isicomp.exe.config
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Isicomp.exe
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Isicomp.pdb
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\antlr.runtime.dll
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Antlr3.Runtime.dll
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Antlr3.Utility.dll
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\StringTemplate.dll
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.csprojAssemblyReference.cache
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.csproj.CoreCompileInputs.cache
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.csproj.CopyComplete
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.exe
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.pdb

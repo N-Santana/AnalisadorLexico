@@ -9,3 +9,14 @@ C:\Users\ramon\Desktop\Projeto Compiladores\AnalisadorLexico\Compilador-Isidrol\
 C:\Users\ramon\Desktop\Projeto Compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\bin\Debug\netcoreapp2.1\ProjetoCompiladores.pdb
 C:\Users\ramon\Desktop\Projeto Compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\obj\Debug\netcoreapp2.1\ProjetoCompiladores.dll
 C:\Users\ramon\Desktop\Projeto Compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\obj\Debug\netcoreapp2.1\ProjetoCompiladores.pdb
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\bin\Debug\netcoreapp2.1\ProjetoCompiladores.deps.json
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\bin\Debug\netcoreapp2.1\ProjetoCompiladores.runtimeconfig.json
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\bin\Debug\netcoreapp2.1\ProjetoCompiladores.runtimeconfig.dev.json
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\bin\Debug\netcoreapp2.1\ProjetoCompiladores.dll
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\bin\Debug\netcoreapp2.1\ProjetoCompiladores.pdb
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\obj\Debug\netcoreapp2.1\ProjetoCompiladores.csproj.CoreCompileInputs.cache
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\obj\Debug\netcoreapp2.1\ProjetoCompiladores.AssemblyInfoInputs.cache
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\obj\Debug\netcoreapp2.1\ProjetoCompiladores.AssemblyInfo.cs
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\obj\Debug\netcoreapp2.1\ProjetoCompiladores.dll
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\obj\Debug\netcoreapp2.1\ProjetoCompiladores.pdb
+C:\Users\ailat\Documents\DEV\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladores\obj\Debug\netcoreapp2.1\ProjetoCompiladores.csprojAssemblyReference.cache
