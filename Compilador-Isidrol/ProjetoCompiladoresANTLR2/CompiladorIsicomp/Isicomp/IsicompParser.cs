@@ -25,38 +25,40 @@ namespace Isicomp
 		public const int EOF = 1;
 		public const int NULL_TREE_LOOKAHEAD = 3;
 		public const int LITERAL_programa = 4;
-		public const int WS = 5;
-		public const int LITERAL_fimprog = 6;
-		public const int T_DOT = 7;
-		public const int LITERAL_declare = 8;
-		public const int T_ID = 9;
-		public const int T_COMMA = 10;
-		public const int T_APARENT = 11;
-		public const int T_FPARENT = 12;
-		public const int LITERAL_se = 13;
-		public const int LITERAL_entao = 14;
-		public const int LITERAL_senao = 15;
-		public const int T_IGUAL = 16;
-		public const int LITERAL_escreva = 17;
-		public const int T_TEXT = 18;
-		public const int LITERAL_leia = 19;
-		public const int LITERAL_enquanto = 20;
-		public const int T_ACHAVE = 21;
-		public const int T_FCHAVE = 22;
-		public const int LITERAL_faca = 23;
-		public const int T_SOMA = 24;
-		public const int T_SUBT = 25;
-		public const int T_DIV = 26;
-		public const int T_MULT = 27;
-		public const int T_UNDERS = 28;
-		public const int T_DIGIT = 29;
-		public const int T_MAIOR = 30;
-		public const int T_MENOR = 31;
-		public const int T_MENOR_IGUAL = 32;
-		public const int T_MAIOR_IGUAL = 33;
-		public const int T_IGUAL_RELAC = 34;
-		public const int T_DIF = 35;
-		public const int T_ASPAS = 36;
+		public const int LITERAL_declare = 5;
+		public const int T_ID = 6;
+		public const int T_COMMA = 7;
+		public const int T_DOT = 8;
+		public const int LITERAL_fimprog = 9;
+		public const int LITERAL_int = 10;
+		public const int LITERAL_string = 11;
+		public const int T_APARENT = 12;
+		public const int T_FPARENT = 13;
+		public const int LITERAL_se = 14;
+		public const int LITERAL_entao = 15;
+		public const int LITERAL_senao = 16;
+		public const int T_IGUAL = 17;
+		public const int LITERAL_escreva = 18;
+		public const int T_TEXT = 19;
+		public const int LITERAL_leia = 20;
+		public const int LITERAL_enquanto = 21;
+		public const int T_ACHAVE = 22;
+		public const int T_FCHAVE = 23;
+		public const int LITERAL_faca = 24;
+		public const int T_SOMA = 25;
+		public const int T_SUBT = 26;
+		public const int T_DIV = 27;
+		public const int T_MULT = 28;
+		public const int T_UNDERS = 29;
+		public const int T_DIGIT = 30;
+		public const int T_MAIOR = 31;
+		public const int T_MENOR = 32;
+		public const int T_MENOR_IGUAL = 33;
+		public const int T_MAIOR_IGUAL = 34;
+		public const int T_IGUAL_RELAC = 35;
+		public const int T_DIF = 36;
+		public const int T_ASPAS = 37;
+		public const int WS = 38;
 		
 		
 		protected void initialize()
@@ -94,69 +96,8 @@ namespace Isicomp
 		
 		try {      // for error handling
 			match(LITERAL_programa);
-			{
-				switch ( LA(1) )
-				{
-				case WS:
-				{
-					match(WS);
-					break;
-				}
-				case LITERAL_declare:
-				{
-					break;
-				}
-				default:
-				{
-					throw new NoViableAltException(LT(1), getFilename());
-				}
-				 }
-			}
 			declare();
-			{
-				switch ( LA(1) )
-				{
-				case WS:
-				{
-					match(WS);
-					break;
-				}
-				case T_ID:
-				case LITERAL_se:
-				case LITERAL_escreva:
-				case LITERAL_leia:
-				case LITERAL_enquanto:
-				case LITERAL_faca:
-				{
-					break;
-				}
-				default:
-				{
-					throw new NoViableAltException(LT(1), getFilename());
-				}
-				 }
-			}
-			blococomando();
-			{
-				switch ( LA(1) )
-				{
-				case WS:
-				{
-					match(WS);
-					break;
-				}
-				case LITERAL_fimprog:
-				{
-					break;
-				}
-				default:
-				{
-					throw new NoViableAltException(LT(1), getFilename());
-				}
-				 }
-			}
-			match(LITERAL_fimprog);
-			match(T_DOT);
+			corpoprograma();
 		}
 		catch (RecognitionException ex)
 		{
@@ -171,24 +112,7 @@ namespace Isicomp
 		
 		try {      // for error handling
 			match(LITERAL_declare);
-			{
-				switch ( LA(1) )
-				{
-				case WS:
-				{
-					match(WS);
-					break;
-				}
-				case T_ID:
-				{
-					break;
-				}
-				default:
-				{
-					throw new NoViableAltException(LT(1), getFilename());
-				}
-				 }
-			}
+			formato();
 			match(T_ID);
 			{    // ( ... )*
 				for (;;)
@@ -196,15 +120,16 @@ namespace Isicomp
 					if ((LA(1)==T_COMMA))
 					{
 						match(T_COMMA);
+						formato();
 						match(T_ID);
 					}
 					else
 					{
-						goto _loop8_breakloop;
+						goto _loop4_breakloop;
 					}
 					
 				}
-_loop8_breakloop:				;
+_loop4_breakloop:				;
 			}    // ( ... )*
 			match(T_DOT);
 		}
@@ -215,27 +140,73 @@ _loop8_breakloop:				;
 		}
 	}
 	
+	public void corpoprograma() //throws RecognitionException, TokenStreamException
+{
+		
+		
+		try {      // for error handling
+			blococomando();
+			match(LITERAL_fimprog);
+			match(T_DOT);
+		}
+		catch (RecognitionException ex)
+		{
+			reportError(ex);
+			recover(ex,tokenSet_0_);
+		}
+	}
+	
+	public void formato() //throws RecognitionException, TokenStreamException
+{
+		
+		
+		try {      // for error handling
+			switch ( LA(1) )
+			{
+			case LITERAL_int:
+			{
+				match(LITERAL_int);
+				break;
+			}
+			case LITERAL_string:
+			{
+				match(LITERAL_string);
+				break;
+			}
+			default:
+			{
+				throw new NoViableAltException(LT(1), getFilename());
+			}
+			 }
+		}
+		catch (RecognitionException ex)
+		{
+			reportError(ex);
+			recover(ex,tokenSet_2_);
+		}
+	}
+	
 	public void blococomando() //throws RecognitionException, TokenStreamException
 {
 		
 		
 		try {      // for error handling
 			{ // ( ... )+
-				int _cnt11=0;
+				int _cnt8=0;
 				for (;;)
 				{
-					if ((tokenSet_2_.member(LA(1))))
+					if ((tokenSet_1_.member(LA(1))))
 					{
 						comando();
 					}
 					else
 					{
-						if (_cnt11 >= 1) { goto _loop11_breakloop; } else { throw new NoViableAltException(LT(1), getFilename());; }
+						if (_cnt8 >= 1) { goto _loop8_breakloop; } else { throw new NoViableAltException(LT(1), getFilename());; }
 					}
 					
-					_cnt11++;
+					_cnt8++;
 				}
-_loop11_breakloop:				;
+_loop8_breakloop:				;
 			}    // ( ... )+
 		}
 		catch (RecognitionException ex)
@@ -254,36 +225,35 @@ _loop11_breakloop:				;
 			{
 			case LITERAL_leia:
 			{
-				leia();
+				cmd_leia();
 				match(T_DOT);
 				break;
 			}
 			case LITERAL_escreva:
 			{
-				escreva();
+				cmd_escreva();
 				match(T_DOT);
 				break;
 			}
 			case T_ID:
 			{
-				atribua();
+				cmd_atribua();
 				match(T_DOT);
 				break;
 			}
 			case LITERAL_se:
 			{
-				se();
+				cmd_se();
 				break;
 			}
 			case LITERAL_enquanto:
 			{
-				enquanto();
+				cmd_enquanto();
 				break;
 			}
 			case LITERAL_faca:
 			{
-				faca();
-				match(T_DOT);
+				cmd_faca();
 				break;
 			}
 			default:
@@ -299,7 +269,7 @@ _loop11_breakloop:				;
 		}
 	}
 	
-	public void leia() //throws RecognitionException, TokenStreamException
+	public void cmd_leia() //throws RecognitionException, TokenStreamException
 {
 		
 		
@@ -316,7 +286,7 @@ _loop11_breakloop:				;
 		}
 	}
 	
-	public void escreva() //throws RecognitionException, TokenStreamException
+	public void cmd_escreva() //throws RecognitionException, TokenStreamException
 {
 		
 		
@@ -351,7 +321,7 @@ _loop11_breakloop:				;
 		}
 	}
 	
-	public void atribua() //throws RecognitionException, TokenStreamException
+	public void cmd_atribua() //throws RecognitionException, TokenStreamException
 {
 		
 		
@@ -380,7 +350,7 @@ _loop11_breakloop:				;
 		}
 	}
 	
-	public void se() //throws RecognitionException, TokenStreamException
+	public void cmd_se() //throws RecognitionException, TokenStreamException
 {
 		
 		
@@ -414,7 +384,7 @@ _loop11_breakloop:				;
 		}
 	}
 	
-	public void enquanto() //throws RecognitionException, TokenStreamException
+	public void cmd_enquanto() //throws RecognitionException, TokenStreamException
 {
 		
 		
@@ -434,7 +404,7 @@ _loop11_breakloop:				;
 		}
 	}
 	
-	public void faca() //throws RecognitionException, TokenStreamException
+	public void cmd_faca() //throws RecognitionException, TokenStreamException
 {
 		
 		
@@ -451,7 +421,7 @@ _loop11_breakloop:				;
 		catch (RecognitionException ex)
 		{
 			reportError(ex);
-			recover(ex,tokenSet_4_);
+			recover(ex,tokenSet_3_);
 		}
 	}
 	
@@ -471,11 +441,11 @@ _loop11_breakloop:				;
 					}
 					else
 					{
-						goto _loop15_breakloop;
+						goto _loop13_breakloop;
 					}
 					
 				}
-_loop15_breakloop:				;
+_loop13_breakloop:				;
 			}    // ( ... )*
 		}
 		catch (RecognitionException ex)
@@ -519,11 +489,11 @@ _loop15_breakloop:				;
 					}
 					else
 					{
-						goto _loop19_breakloop;
+						goto _loop17_breakloop;
 					}
 					
 				}
-_loop19_breakloop:				;
+_loop17_breakloop:				;
 			}    // ( ... )*
 		}
 		catch (RecognitionException ex)
@@ -837,12 +807,13 @@ _loop19_breakloop:				;
 		@"""<2>""",
 		@"""NULL_TREE_LOOKAHEAD""",
 		@"""programa""",
-		@"""WS""",
-		@"""fimprog""",
-		@"""T_DOT""",
 		@"""declare""",
 		@"""T_ID""",
 		@"""T_COMMA""",
+		@"""T_DOT""",
+		@"""fimprog""",
+		@"""int""",
+		@"""string""",
 		@"""T_APARENT""",
 		@"""T_FPARENT""",
 		@"""se""",
@@ -868,7 +839,8 @@ _loop19_breakloop:				;
 		@"""T_MAIOR_IGUAL""",
 		@"""T_IGUAL_RELAC""",
 		@"""T_DIF""",
-		@"""T_ASPAS"""
+		@"""T_ASPAS""",
+		@"""WS"""
 	};
 	
 	private static long[] mk_tokenSet_0_()
@@ -879,67 +851,67 @@ _loop19_breakloop:				;
 	public static readonly BitSet tokenSet_0_ = new BitSet(mk_tokenSet_0_());
 	private static long[] mk_tokenSet_1_()
 	{
-		long[] data = { 10101280L, 0L};
+		long[] data = { 20201536L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_1_ = new BitSet(mk_tokenSet_1_());
 	private static long[] mk_tokenSet_2_()
 	{
-		long[] data = { 10101248L, 0L};
+		long[] data = { 64L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_2_ = new BitSet(mk_tokenSet_2_());
 	private static long[] mk_tokenSet_3_()
 	{
-		long[] data = { 14328416L, 0L};
+		long[] data = { 28656192L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_3_ = new BitSet(mk_tokenSet_3_());
 	private static long[] mk_tokenSet_4_()
 	{
-		long[] data = { 128L, 0L};
+		long[] data = { 256L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_4_ = new BitSet(mk_tokenSet_4_());
 	private static long[] mk_tokenSet_5_()
 	{
-		long[] data = { 4224L, 0L};
+		long[] data = { 8448L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_5_ = new BitSet(mk_tokenSet_5_());
 	private static long[] mk_tokenSet_6_()
 	{
-		long[] data = { 50335872L, 0L};
+		long[] data = { 100671744L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_6_ = new BitSet(mk_tokenSet_6_());
 	private static long[] mk_tokenSet_7_()
 	{
-		long[] data = { 536871424L, 0L};
+		long[] data = { 1073741888L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_7_ = new BitSet(mk_tokenSet_7_());
 	private static long[] mk_tokenSet_8_()
 	{
-		long[] data = { 67897462912L, 0L};
+		long[] data = { 135794925824L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_8_ = new BitSet(mk_tokenSet_8_());
 	private static long[] mk_tokenSet_9_()
 	{
-		long[] data = { 536873472L, 0L};
+		long[] data = { 1073745984L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_9_ = new BitSet(mk_tokenSet_9_());
 	private static long[] mk_tokenSet_10_()
 	{
-		long[] data = { 251662464L, 0L};
+		long[] data = { 503324928L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_10_ = new BitSet(mk_tokenSet_10_());
 	private static long[] mk_tokenSet_11_()
 	{
-		long[] data = { 4096L, 0L};
+		long[] data = { 8192L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_11_ = new BitSet(mk_tokenSet_11_());

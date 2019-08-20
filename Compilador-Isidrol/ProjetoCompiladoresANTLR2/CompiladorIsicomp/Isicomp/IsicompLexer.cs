@@ -35,38 +35,40 @@ namespace Isicomp
 		public const int EOF = 1;
 		public const int NULL_TREE_LOOKAHEAD = 3;
 		public const int LITERAL_programa = 4;
-		public const int WS = 5;
-		public const int LITERAL_fimprog = 6;
-		public const int T_DOT = 7;
-		public const int LITERAL_declare = 8;
-		public const int T_ID = 9;
-		public const int T_COMMA = 10;
-		public const int T_APARENT = 11;
-		public const int T_FPARENT = 12;
-		public const int LITERAL_se = 13;
-		public const int LITERAL_entao = 14;
-		public const int LITERAL_senao = 15;
-		public const int T_IGUAL = 16;
-		public const int LITERAL_escreva = 17;
-		public const int T_TEXT = 18;
-		public const int LITERAL_leia = 19;
-		public const int LITERAL_enquanto = 20;
-		public const int T_ACHAVE = 21;
-		public const int T_FCHAVE = 22;
-		public const int LITERAL_faca = 23;
-		public const int T_SOMA = 24;
-		public const int T_SUBT = 25;
-		public const int T_DIV = 26;
-		public const int T_MULT = 27;
-		public const int T_UNDERS = 28;
-		public const int T_DIGIT = 29;
-		public const int T_MAIOR = 30;
-		public const int T_MENOR = 31;
-		public const int T_MENOR_IGUAL = 32;
-		public const int T_MAIOR_IGUAL = 33;
-		public const int T_IGUAL_RELAC = 34;
-		public const int T_DIF = 35;
-		public const int T_ASPAS = 36;
+		public const int LITERAL_declare = 5;
+		public const int T_ID = 6;
+		public const int T_COMMA = 7;
+		public const int T_DOT = 8;
+		public const int LITERAL_fimprog = 9;
+		public const int LITERAL_int = 10;
+		public const int LITERAL_string = 11;
+		public const int T_APARENT = 12;
+		public const int T_FPARENT = 13;
+		public const int LITERAL_se = 14;
+		public const int LITERAL_entao = 15;
+		public const int LITERAL_senao = 16;
+		public const int T_IGUAL = 17;
+		public const int LITERAL_escreva = 18;
+		public const int T_TEXT = 19;
+		public const int LITERAL_leia = 20;
+		public const int LITERAL_enquanto = 21;
+		public const int T_ACHAVE = 22;
+		public const int T_FCHAVE = 23;
+		public const int LITERAL_faca = 24;
+		public const int T_SOMA = 25;
+		public const int T_SUBT = 26;
+		public const int T_DIV = 27;
+		public const int T_MULT = 28;
+		public const int T_UNDERS = 29;
+		public const int T_DIGIT = 30;
+		public const int T_MAIOR = 31;
+		public const int T_MENOR = 32;
+		public const int T_MENOR_IGUAL = 33;
+		public const int T_MAIOR_IGUAL = 34;
+		public const int T_IGUAL_RELAC = 35;
+		public const int T_DIF = 36;
+		public const int T_ASPAS = 37;
+		public const int WS = 38;
 		
 		public IsicompLexer(Stream ins) : this(new ByteBuffer(ins))
 		{
@@ -89,16 +91,18 @@ namespace Isicomp
 			caseSensitiveLiterals = true;
 			setCaseSensitive(true);
 			literals = new Hashtable(100, (float) 0.4, null, Comparer.Default);
-			literals.Add("entao", 14);
+			literals.Add("string", 11);
 			literals.Add("programa", 4);
-			literals.Add("se", 13);
-			literals.Add("senao", 15);
-			literals.Add("escreva", 17);
-			literals.Add("leia", 19);
-			literals.Add("enquanto", 20);
-			literals.Add("declare", 8);
-			literals.Add("fimprog", 6);
-			literals.Add("faca", 23);
+			literals.Add("senao", 16);
+			literals.Add("leia", 20);
+			literals.Add("fimprog", 9);
+			literals.Add("se", 14);
+			literals.Add("escreva", 18);
+			literals.Add("declare", 5);
+			literals.Add("int", 10);
+			literals.Add("entao", 15);
+			literals.Add("faca", 24);
+			literals.Add("enquanto", 21);
 		}
 		
 		override public IToken nextToken()			//throws TokenStreamException
@@ -357,11 +361,11 @@ tryAgain:
 				}
 				default:
 				{
-					goto _loop42_breakloop;
+					goto _loop40_breakloop;
 				}
 				 }
 			}
-_loop42_breakloop:			;
+_loop40_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -377,7 +381,7 @@ _loop42_breakloop:			;
 		_ttype = T_DIGIT;
 		
 		{ // ( ... )+
-			int _cnt45=0;
+			int _cnt43=0;
 			for (;;)
 			{
 				if (((cached_LA1 >= '0' && cached_LA1 <= '9')))
@@ -386,12 +390,12 @@ _loop42_breakloop:			;
 				}
 				else
 				{
-					if (_cnt45 >= 1) { goto _loop45_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt43 >= 1) { goto _loop43_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				
-				_cnt45++;
+				_cnt43++;
 			}
-_loop45_breakloop:			;
+_loop43_breakloop:			;
 		}    // ( ... )+
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -408,7 +412,7 @@ _loop45_breakloop:			;
 		
 		mT_ASPAS(false);
 		{ // ( ... )+
-			int _cnt48=0;
+			int _cnt46=0;
 			for (;;)
 			{
 				switch ( cached_LA1 )
@@ -442,12 +446,12 @@ _loop45_breakloop:			;
 				}
 				default:
 				{
-					if (_cnt48 >= 1) { goto _loop48_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt46 >= 1) { goto _loop46_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				break; }
-				_cnt48++;
+				_cnt46++;
 			}
-_loop48_breakloop:			;
+_loop46_breakloop:			;
 		}    // ( ... )+
 		mT_ASPAS(false);
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))

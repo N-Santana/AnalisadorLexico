@@ -7,15 +7,19 @@ class IsicompParser extends Parser;
 
 //--------------- SINTAXE CODIGO -------------------
 
-programa : "programa" (WS)? declare (WS)? blococomando (WS)? "fimprog" T_DOT;
+programa : "programa" declare corpoprograma ;
 
-declare : "declare" (WS)? T_ID (T_COMMA T_ID)* T_DOT;
+declare : "declare"  formato T_ID (T_COMMA formato T_ID)* T_DOT;
+
+corpoprograma : blococomando "fimprog" T_DOT;
 
 blococomando : (comando)+;
 
-comando : leia T_DOT | escreva T_DOT | atribua T_DOT | se | enquanto | faca T_DOT ;
+comando : cmd_leia T_DOT | cmd_escreva T_DOT | cmd_atribua T_DOT | cmd_se | cmd_enquanto | cmd_faca ;
 
 //--------------------- REGRAS ----------------------
+
+formato : "int" | "string" ;
 
 exp_ter : exp_fat (oper_ter exp_fat)*;
 
@@ -25,17 +29,17 @@ exp_relacional : (T_ID | num) ope_relac (T_ID | num);
 
 termo : num | T_ID | T_APARENT exp_ter T_FPARENT ; 
 
-se : "se" T_APARENT exp_relacional T_FPARENT "entao" blococomando ("senao" "entao" blococomando )?;
+cmd_se : "se" T_APARENT exp_relacional T_FPARENT "entao" blococomando ("senao" "entao" blococomando )?;
 
-atribua : T_ID T_IGUAL (exp_ter | T_ID) ; 
+cmd_atribua : T_ID T_IGUAL (exp_ter | T_ID) ; 
 
-escreva : "escreva" T_APARENT (T_ID | T_TEXT) T_FPARENT ;
+cmd_escreva : "escreva" T_APARENT (T_ID | T_TEXT) T_FPARENT ;
 
-leia : "leia" T_APARENT T_ID T_FPARENT ;
+cmd_leia : "leia" T_APARENT T_ID T_FPARENT ;
 
-enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT T_ACHAVE blococomando T_FCHAVE;
+cmd_enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT T_ACHAVE blococomando T_FCHAVE;
 
-faca : "faca" T_ACHAVE blococomando T_FCHAVE "enquanto" T_APARENT exp_relacional T_FPARENT ;
+cmd_faca : "faca" T_ACHAVE blococomando T_FCHAVE "enquanto" T_APARENT exp_relacional T_FPARENT ;
 
 //-------------------- DEFINICOES -------------------
 
