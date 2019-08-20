@@ -1,5 +1,7 @@
 // $ANTLR 2.7.6 (2005-12-22): "Isicomp.g" -> "IsicompLexer.cs"$
 
+    using System.Collections.Generic;
+
 namespace Isicomp
 {
 	// Generate header specific to lexer CSharp file
@@ -46,14 +48,14 @@ namespace Isicomp
 		public const int T_FPARENT = 13;
 		public const int LITERAL_se = 14;
 		public const int LITERAL_entao = 15;
-		public const int LITERAL_senao = 16;
-		public const int T_IGUAL = 17;
-		public const int LITERAL_escreva = 18;
-		public const int T_TEXT = 19;
-		public const int LITERAL_leia = 20;
-		public const int LITERAL_enquanto = 21;
-		public const int T_ACHAVE = 22;
-		public const int T_FCHAVE = 23;
+		public const int T_ACHAVE = 16;
+		public const int T_FCHAVE = 17;
+		public const int LITERAL_senao = 18;
+		public const int T_IGUAL = 19;
+		public const int LITERAL_escreva = 20;
+		public const int T_TEXT = 21;
+		public const int LITERAL_leia = 22;
+		public const int LITERAL_enquanto = 23;
 		public const int LITERAL_faca = 24;
 		public const int T_SOMA = 25;
 		public const int T_SUBT = 26;
@@ -93,16 +95,16 @@ namespace Isicomp
 			literals = new Hashtable(100, (float) 0.4, null, Comparer.Default);
 			literals.Add("string", 11);
 			literals.Add("programa", 4);
-			literals.Add("senao", 16);
-			literals.Add("leia", 20);
+			literals.Add("senao", 18);
+			literals.Add("leia", 22);
 			literals.Add("fimprog", 9);
 			literals.Add("se", 14);
-			literals.Add("escreva", 18);
+			literals.Add("escreva", 20);
 			literals.Add("declare", 5);
 			literals.Add("int", 10);
 			literals.Add("entao", 15);
 			literals.Add("faca", 24);
-			literals.Add("enquanto", 21);
+			literals.Add("enquanto", 23);
 		}
 		
 		override public IToken nextToken()			//throws TokenStreamException
@@ -361,11 +363,11 @@ tryAgain:
 				}
 				default:
 				{
-					goto _loop40_breakloop;
+					goto _loop48_breakloop;
 				}
 				 }
 			}
-_loop40_breakloop:			;
+_loop48_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -381,7 +383,7 @@ _loop40_breakloop:			;
 		_ttype = T_DIGIT;
 		
 		{ // ( ... )+
-			int _cnt43=0;
+			int _cnt51=0;
 			for (;;)
 			{
 				if (((cached_LA1 >= '0' && cached_LA1 <= '9')))
@@ -390,12 +392,12 @@ _loop40_breakloop:			;
 				}
 				else
 				{
-					if (_cnt43 >= 1) { goto _loop43_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt51 >= 1) { goto _loop51_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				
-				_cnt43++;
+				_cnt51++;
 			}
-_loop43_breakloop:			;
+_loop51_breakloop:			;
 		}    // ( ... )+
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -412,7 +414,7 @@ _loop43_breakloop:			;
 		
 		mT_ASPAS(false);
 		{ // ( ... )+
-			int _cnt46=0;
+			int _cnt54=0;
 			for (;;)
 			{
 				switch ( cached_LA1 )
@@ -446,12 +448,12 @@ _loop43_breakloop:			;
 				}
 				default:
 				{
-					if (_cnt46 >= 1) { goto _loop46_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt54 >= 1) { goto _loop54_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				break; }
-				_cnt46++;
+				_cnt54++;
 			}
-_loop46_breakloop:			;
+_loop54_breakloop:			;
 		}    // ( ... )+
 		mT_ASPAS(false);
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))

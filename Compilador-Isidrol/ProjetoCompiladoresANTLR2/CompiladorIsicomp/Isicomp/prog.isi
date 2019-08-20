@@ -9,10 +9,12 @@ leia(a).
 escreva("Digite B").
 leia (b).
 
-se(a<b) entao 
+se(a<b) entao {
 	c := a+b.
-senao entao 
+}
+senao {
 	c:=a-b.
+}
 
 escreva("C e igual a ").
 escreva(c).

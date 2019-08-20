@@ -1,5 +1,7 @@
 // $ANTLR 2.7.6 (2005-12-22): "Isicomp.g" -> "IsicompParser.cs"$
 
+    using System.Collections.Generic;
+
 namespace Isicomp
 {
 	public class IsicompParserTokenTypes
@@ -18,14 +20,14 @@ namespace Isicomp
 		public const int T_FPARENT = 13;
 		public const int LITERAL_se = 14;
 		public const int LITERAL_entao = 15;
-		public const int LITERAL_senao = 16;
-		public const int T_IGUAL = 17;
-		public const int LITERAL_escreva = 18;
-		public const int T_TEXT = 19;
-		public const int LITERAL_leia = 20;
-		public const int LITERAL_enquanto = 21;
-		public const int T_ACHAVE = 22;
-		public const int T_FCHAVE = 23;
+		public const int T_ACHAVE = 16;
+		public const int T_FCHAVE = 17;
+		public const int LITERAL_senao = 18;
+		public const int T_IGUAL = 19;
+		public const int LITERAL_escreva = 20;
+		public const int T_TEXT = 21;
+		public const int LITERAL_leia = 22;
+		public const int LITERAL_enquanto = 23;
 		public const int LITERAL_faca = 24;
 		public const int T_SOMA = 25;
 		public const int T_SUBT = 26;

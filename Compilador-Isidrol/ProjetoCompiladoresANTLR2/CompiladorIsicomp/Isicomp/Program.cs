@@ -1,6 +1,7 @@
 ﻿using Antlr.Runtime;
 using Isicomp;
 using System;
+
 using System.IO;
 using System.Text;
 
@@ -22,6 +23,9 @@ namespace ProjetoCompiladores
                 IsicompLexer lexer = new IsicompLexer(stream);
                 IsicompParser parser = new IsicompParser(lexer);
                 parser.programa();
+                Console.WriteLine("Compilado com sucesso");
+
+
 
                 //AntlrInputStream inputStream = new AntlrInputStream(text.ToString());
                 //SpeakLexer speakLexer = new SpeakLexer(inputStream);
@@ -36,9 +40,13 @@ namespace ProjetoCompiladores
                 //    Console.WriteLine("{0} has said \"{1}\"", line.Person, line.Text);
                 //}
             }
+            catch (ApplicationException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
+                Console.WriteLine(ex.StackTrace);
             }
             finally
             {

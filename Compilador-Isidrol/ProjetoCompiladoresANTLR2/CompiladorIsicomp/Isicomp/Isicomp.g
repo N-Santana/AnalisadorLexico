@@ -1,21 +1,28 @@
+header {
+    using System.Collections.Generic;
+}
+
 options {
     language  = "CSharp";
     namespace = "Isicomp";
 }
 
 class IsicompParser extends Parser;   
-
+{
+        public Dictionary<string, string> mapaVar = new Dictionary<string, string>();
+}
 //--------------- SINTAXE CODIGO -------------------
 
 programa : "programa" declare corpoprograma ;
 
-declare : "declare"  formato T_ID (T_COMMA formato T_ID)* T_DOT;
+declare : "declare"  formato T_ID {mapaVar.Add(LT(0).getText(), LT(0).getText());}
+         (T_COMMA formato T_ID {mapaVar.Add(LT(0).getText(), LT(0).getText());})* T_DOT;
 
-corpoprograma : blococomando "fimprog" T_DOT;
+corpoprograma : blococomando ;
 
-blococomando : (comando)+;
+blococomando : (comando)+ "fimprog" ;
 
-comando : cmd_leia T_DOT | cmd_escreva T_DOT | cmd_atribua T_DOT | cmd_se | cmd_enquanto | cmd_faca ;
+comando : cmd_leia T_DOT | cmd_escreva T_DOT | cmd_atribua T_DOT |  cmd_se | cmd_enquanto | cmd_faca ;
 
 //--------------------- REGRAS ----------------------
 
@@ -23,23 +30,47 @@ formato : "int" | "string" ;
 
 exp_ter : exp_fat (oper_ter exp_fat)*;
 
-exp_fat : (num | T_ID) (oper_fat termo)*;
+exp_fat : (num | T_ID            {
+           	  if (!mapaVar.ContainsKey(LT(0).getText())){
+                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+             }
+           }  
 
-exp_relacional : (T_ID | num) ope_relac (T_ID | num);
+        ) (oper_fat termo)*;
 
-termo : num | T_ID | T_APARENT exp_ter T_FPARENT ; 
+exp_relacional : (T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
+                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+             }}
+             | num) ope_relac (T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
+                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+             }}
+             | num);
 
-cmd_se : "se" T_APARENT exp_relacional T_FPARENT "entao" blococomando ("senao" "entao" blococomando )?;
+termo : num | T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
+                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+             }}
+             | T_APARENT exp_ter T_FPARENT ; 
 
-cmd_atribua : T_ID T_IGUAL (exp_ter | T_ID) ; 
+cmd_se : "se" T_APARENT exp_relacional T_FPARENT "entao" T_ACHAVE (comando)+ T_FCHAVE ("senao" T_ACHAVE (comando)+ T_FCHAVE )?;
 
-cmd_escreva : "escreva" T_APARENT (T_ID | T_TEXT) T_FPARENT ;
+cmd_atribua : T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
+                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+             }}
+             T_IGUAL (exp_ter) ; 
 
-cmd_leia : "leia" T_APARENT T_ID T_FPARENT ;
+cmd_escreva : "escreva" T_APARENT (T_ID            	 {if (!mapaVar.ContainsKey(LT(0).getText())){
+                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+             }}
+             | T_TEXT) T_FPARENT ;
 
-cmd_enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT T_ACHAVE blococomando T_FCHAVE;
+cmd_leia : "leia" T_APARENT T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
+                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+             }}
+             T_FPARENT ;
 
-cmd_faca : "faca" T_ACHAVE blococomando T_FCHAVE "enquanto" T_APARENT exp_relacional T_FPARENT ;
+cmd_enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT T_ACHAVE (comando)+ T_FCHAVE;
+
+cmd_faca : "faca" T_ACHAVE (comando)+ T_FCHAVE "enquanto" T_APARENT exp_relacional T_FPARENT ;
 
 //-------------------- DEFINICOES -------------------
 
