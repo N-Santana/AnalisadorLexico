@@ -9,24 +9,21 @@ options {
 
 class IsicompParser extends Parser;   
 {
+        // para o mapVar: key = id; value = formato;
         public Dictionary<string, string> mapaVar = new Dictionary<string, string>();
 }
 //--------------- SINTAXE CODIGO -------------------
 
-programa : "programa" declare corpoprograma ;
+programa :  "programa" declare blococomando ;
 
-declare : "declare"  formato T_ID {mapaVar.Add(LT(0).getText(), LT(0).getText());}
-         (T_COMMA formato T_ID {mapaVar.Add(LT(0).getText(), LT(0).getText());})* T_DOT;
-
-corpoprograma : blococomando ;
+declare : "declare"  formato T_ID {mapaVar.Add(LT(0).getText(), LT(-1).getText());}
+         (T_COMMA formato T_ID {mapaVar.Add(LT(0).getText(), LT(-1).getText());})* T_DOT;
 
 blococomando : (comando)+ "fimprog" ;
 
 comando : cmd_leia T_DOT | cmd_escreva T_DOT | cmd_atribua T_DOT |  cmd_se | cmd_enquanto | cmd_faca ;
 
 //--------------------- REGRAS ----------------------
-
-formato : "int" | "string" ;
 
 exp_ter : exp_fat (oper_ter exp_fat)*;
 
@@ -38,12 +35,12 @@ exp_fat : (num | T_ID            {
 
         ) (oper_fat termo)*;
 
-exp_relacional : (T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
-                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
-             }}
-             | num) ope_relac (T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
-                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
-             }}
+exp_relacional : (T_ID  {if (!mapaVar.ContainsKey(LT(0).getText())){
+                            throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+                        }}
+             | num) ope_relac (T_ID     {if (!mapaVar.ContainsKey(LT(0).getText())){
+                                            throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+                                        }}
              | num);
 
 termo : num | T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
@@ -53,19 +50,23 @@ termo : num | T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
 
 cmd_se : "se" T_APARENT exp_relacional T_FPARENT "entao" T_ACHAVE (comando)+ T_FCHAVE ("senao" T_ACHAVE (comando)+ T_FCHAVE )?;
 
-cmd_atribua : T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
-                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
-             }}
-             T_IGUAL (exp_ter) ; 
+cmd_atribua : T_ID  {   if (!mapaVar.ContainsKey(LT(0).getText())){
+                            throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+                        }
+                        string tID = mapaVar[LT(0).getText()];
+                    }
+              T_IGUAL (exp_ter { if(!tID.Equals("numeric")) throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A STRING ID AN A NON STRING ATRIBUITION."); }
+              | T_TEXT {   if(!tID.Equals("string")) throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A NUMERIC ID AN A NON NUMERIC ATRIBUITION."); }
+              );     
 
-cmd_escreva : "escreva" T_APARENT (T_ID            	 {if (!mapaVar.ContainsKey(LT(0).getText())){
-                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
-             }}
+cmd_escreva : "escreva" T_APARENT (T_ID    {if (!mapaVar.ContainsKey(LT(0).getText())){
+                                                throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+                                            }}
              | T_TEXT) T_FPARENT ;
 
-cmd_leia : "leia" T_APARENT T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
-                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
-             }}
+cmd_leia : "leia" T_APARENT T_ID    {if (!mapaVar.ContainsKey(LT(0).getText())){
+                                        throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
+                                    }}
              T_FPARENT ;
 
 cmd_enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT T_ACHAVE (comando)+ T_FCHAVE;
@@ -73,6 +74,8 @@ cmd_enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT T_ACHAVE (comando)+
 cmd_faca : "faca" T_ACHAVE (comando)+ T_FCHAVE "enquanto" T_APARENT exp_relacional T_FPARENT ;
 
 //-------------------- DEFINICOES -------------------
+
+formato : "numeric" | "string" ;
 
 oper_ter : T_SOMA | T_SUBT ;
 

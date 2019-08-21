@@ -25,20 +25,6 @@ namespace ProjetoCompiladores
                 parser.programa();
                 Console.WriteLine("Compilado com sucesso");
 
-
-
-                //AntlrInputStream inputStream = new AntlrInputStream(text.ToString());
-                //SpeakLexer speakLexer = new SpeakLexer(inputStream);
-                //CommonTokenStream commonTokenStream = new CommonTokenStream(speakLexer);
-                //SpeakParser speakParser = new SpeakParser(commonTokenStream);
-                //SpeakParser.ChatContext chatContext = speakParser.chat();
-                //SpeakVisitor visitor = new SpeakVisitor();
-                //visitor.Visit(chatContext);
-
-                //foreach (var line in visitor.Lines)
-                //{
-                //    Console.WriteLine("{0} has said \"{1}\"", line.Person, line.Text);
-                //}
             }
             catch (ApplicationException ex)
             {

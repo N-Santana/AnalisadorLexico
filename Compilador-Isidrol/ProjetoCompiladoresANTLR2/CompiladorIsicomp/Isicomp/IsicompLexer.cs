@@ -42,21 +42,21 @@ namespace Isicomp
 		public const int T_COMMA = 7;
 		public const int T_DOT = 8;
 		public const int LITERAL_fimprog = 9;
-		public const int LITERAL_int = 10;
-		public const int LITERAL_string = 11;
-		public const int T_APARENT = 12;
-		public const int T_FPARENT = 13;
-		public const int LITERAL_se = 14;
-		public const int LITERAL_entao = 15;
-		public const int T_ACHAVE = 16;
-		public const int T_FCHAVE = 17;
-		public const int LITERAL_senao = 18;
-		public const int T_IGUAL = 19;
-		public const int LITERAL_escreva = 20;
-		public const int T_TEXT = 21;
-		public const int LITERAL_leia = 22;
-		public const int LITERAL_enquanto = 23;
-		public const int LITERAL_faca = 24;
+		public const int T_APARENT = 10;
+		public const int T_FPARENT = 11;
+		public const int LITERAL_se = 12;
+		public const int LITERAL_entao = 13;
+		public const int T_ACHAVE = 14;
+		public const int T_FCHAVE = 15;
+		public const int LITERAL_senao = 16;
+		public const int T_IGUAL = 17;
+		public const int T_TEXT = 18;
+		public const int LITERAL_escreva = 19;
+		public const int LITERAL_leia = 20;
+		public const int LITERAL_enquanto = 21;
+		public const int LITERAL_faca = 22;
+		public const int LITERAL_numeric = 23;
+		public const int LITERAL_string = 24;
 		public const int T_SOMA = 25;
 		public const int T_SUBT = 26;
 		public const int T_DIV = 27;
@@ -93,18 +93,18 @@ namespace Isicomp
 			caseSensitiveLiterals = true;
 			setCaseSensitive(true);
 			literals = new Hashtable(100, (float) 0.4, null, Comparer.Default);
-			literals.Add("string", 11);
+			literals.Add("string", 24);
 			literals.Add("programa", 4);
-			literals.Add("senao", 18);
-			literals.Add("leia", 22);
+			literals.Add("senao", 16);
+			literals.Add("leia", 20);
 			literals.Add("fimprog", 9);
-			literals.Add("se", 14);
-			literals.Add("escreva", 20);
+			literals.Add("se", 12);
+			literals.Add("escreva", 19);
 			literals.Add("declare", 5);
-			literals.Add("int", 10);
-			literals.Add("entao", 15);
-			literals.Add("faca", 24);
-			literals.Add("enquanto", 23);
+			literals.Add("entao", 13);
+			literals.Add("faca", 22);
+			literals.Add("enquanto", 21);
+			literals.Add("numeric", 23);
 		}
 		
 		override public IToken nextToken()			//throws TokenStreamException
@@ -363,11 +363,11 @@ tryAgain:
 				}
 				default:
 				{
-					goto _loop48_breakloop;
+					goto _loop47_breakloop;
 				}
 				 }
 			}
-_loop48_breakloop:			;
+_loop47_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -383,7 +383,7 @@ _loop48_breakloop:			;
 		_ttype = T_DIGIT;
 		
 		{ // ( ... )+
-			int _cnt51=0;
+			int _cnt50=0;
 			for (;;)
 			{
 				if (((cached_LA1 >= '0' && cached_LA1 <= '9')))
@@ -392,12 +392,12 @@ _loop48_breakloop:			;
 				}
 				else
 				{
-					if (_cnt51 >= 1) { goto _loop51_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt50 >= 1) { goto _loop50_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				
-				_cnt51++;
+				_cnt50++;
 			}
-_loop51_breakloop:			;
+_loop50_breakloop:			;
 		}    // ( ... )+
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -414,7 +414,7 @@ _loop51_breakloop:			;
 		
 		mT_ASPAS(false);
 		{ // ( ... )+
-			int _cnt54=0;
+			int _cnt53=0;
 			for (;;)
 			{
 				switch ( cached_LA1 )
@@ -448,12 +448,12 @@ _loop51_breakloop:			;
 				}
 				default:
 				{
-					if (_cnt54 >= 1) { goto _loop54_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt53 >= 1) { goto _loop53_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				break; }
-				_cnt54++;
+				_cnt53++;
 			}
-_loop54_breakloop:			;
+_loop53_breakloop:			;
 		}    // ( ... )+
 		mT_ASPAS(false);
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
