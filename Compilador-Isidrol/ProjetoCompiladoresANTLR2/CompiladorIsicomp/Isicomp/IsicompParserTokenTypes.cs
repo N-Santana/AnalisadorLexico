@@ -42,7 +42,9 @@ namespace Isicomp
 		public const int T_IGUAL_RELAC = 35;
 		public const int T_DIF = 36;
 		public const int T_ASPAS = 37;
-		public const int WS = 38;
+		public const int T_COMMENT = 38;
+		public const int ML_COMMENT = 39;
+		public const int WS = 40;
 		
 	}
 }

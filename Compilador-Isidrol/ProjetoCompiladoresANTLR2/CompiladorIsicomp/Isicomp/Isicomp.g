@@ -140,6 +140,24 @@ T_IGUAL_RELAC : "==";
 
 T_DIF : "!=";
 
+T_COMMENT : "//" (~('\n' | '\r'))* {$setType(Token.SKIP);};
+ML_COMMENT
+    :   "/*"
+        (
+            options {
+                generateAmbigWarnings=false;
+            }
+            :   { LA(2)!='/' }? '*'
+            |   '\r' '\n' {newline();}
+            |   '\r' {newline();}
+            |   '\n' {newline();}
+            |   ~('*'|'\n'|'\r')
+        )*
+        "*/"
+
+        {$setType(Token.SKIP);}
+    ;
+
 //--------------------- TABULACAO -------------------
 
 WS : (' ' | '\t' | '\r' | '\n'{newline();}) {_ttype=Token.SKIP;} ;  

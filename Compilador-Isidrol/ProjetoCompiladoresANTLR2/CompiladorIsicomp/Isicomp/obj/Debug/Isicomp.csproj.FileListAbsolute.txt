@@ -22,3 +22,15 @@ C:\Users\ramon\Desktop\ProjetoCompiladores\AnalisadorLexico\Compilador-Isidrol\P
 C:\Users\ramon\Desktop\ProjetoCompiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.csproj.CopyComplete
 C:\Users\ramon\Desktop\ProjetoCompiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.exe
 C:\Users\ramon\Desktop\ProjetoCompiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.pdb
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Isicomp.exe.config
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Isicomp.exe
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Isicomp.pdb
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\antlr.runtime.dll
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Antlr3.Runtime.dll
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\Antlr3.Utility.dll
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\bin\Debug\StringTemplate.dll
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.csprojAssemblyReference.cache
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.csproj.CoreCompileInputs.cache
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.csproj.CopyComplete
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.exe
+C:\Users\ramon\Desktop\proj compiladores\AnalisadorLexico\Compilador-Isidrol\ProjetoCompiladoresANTLR2\CompiladorIsicomp\Isicomp\obj\Debug\Isicomp.pdb

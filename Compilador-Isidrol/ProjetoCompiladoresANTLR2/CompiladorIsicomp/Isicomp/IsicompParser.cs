@@ -60,7 +60,9 @@ namespace Isicomp
 		public const int T_IGUAL_RELAC = 35;
 		public const int T_DIF = 36;
 		public const int T_ASPAS = 37;
-		public const int WS = 38;
+		public const int T_COMMENT = 38;
+		public const int ML_COMMENT = 39;
+		public const int WS = 40;
 		
 		
         // para o mapVar: key = id; value = formato;
@@ -944,6 +946,8 @@ _loop15_breakloop:				;
 		@"""T_IGUAL_RELAC""",
 		@"""T_DIF""",
 		@"""T_ASPAS""",
+		@"""T_COMMENT""",
+		@"""ML_COMMENT""",
 		@"""WS"""
 	};
 	

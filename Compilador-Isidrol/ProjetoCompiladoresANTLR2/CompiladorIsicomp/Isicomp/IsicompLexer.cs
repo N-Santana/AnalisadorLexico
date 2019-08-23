@@ -70,7 +70,9 @@ namespace Isicomp
 		public const int T_IGUAL_RELAC = 35;
 		public const int T_DIF = 36;
 		public const int T_ASPAS = 37;
-		public const int WS = 38;
+		public const int T_COMMENT = 38;
+		public const int ML_COMMENT = 39;
+		public const int WS = 40;
 		
 		public IsicompLexer(Stream ins) : this(new ByteBuffer(ins))
 		{
@@ -160,12 +162,6 @@ tryAgain:
 							theRetToken = returnToken_;
 							break;
 						}
-						case '/':
-						{
-							mT_DIV(true);
-							theRetToken = returnToken_;
-							break;
-						}
 						case '*':
 						{
 							mT_MULT(true);
@@ -252,8 +248,20 @@ tryAgain:
 								mT_MENOR_IGUAL(true);
 								theRetToken = returnToken_;
 							}
+							else if ((cached_LA1=='/') && (cached_LA2=='/')) {
+								mT_COMMENT(true);
+								theRetToken = returnToken_;
+							}
+							else if ((cached_LA1=='/') && (cached_LA2=='*')) {
+								mML_COMMENT(true);
+								theRetToken = returnToken_;
+							}
 							else if ((cached_LA1=='"') && (true)) {
 								mT_ASPAS(true);
+								theRetToken = returnToken_;
+							}
+							else if ((cached_LA1=='/') && (true)) {
+								mT_DIV(true);
 								theRetToken = returnToken_;
 							}
 							else if ((cached_LA1=='>') && (true)) {
@@ -730,6 +738,125 @@ _loop53_breakloop:			;
 		returnToken_ = _token;
 	}
 	
+	public void mT_COMMENT(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
+{
+		int _ttype; IToken _token=null; int _begin=text.Length;
+		_ttype = T_COMMENT;
+		
+		match("//");
+		{    // ( ... )*
+			for (;;)
+			{
+				if ((tokenSet_1_.member(cached_LA1)))
+				{
+					{
+						match(tokenSet_1_);
+					}
+				}
+				else
+				{
+					goto _loop76_breakloop;
+				}
+				
+			}
+_loop76_breakloop:			;
+		}    // ( ... )*
+		_ttype = Token.SKIP;
+		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
+		{
+			_token = makeToken(_ttype);
+			_token.setText(text.ToString(_begin, text.Length-_begin));
+		}
+		returnToken_ = _token;
+	}
+	
+	public void mML_COMMENT(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
+{
+		int _ttype; IToken _token=null; int _begin=text.Length;
+		_ttype = ML_COMMENT;
+		
+		match("/*");
+		{    // ( ... )*
+			for (;;)
+			{
+				switch ( cached_LA1 )
+				{
+				case '\n':
+				{
+					match('\n');
+					newline();
+					break;
+				}
+				case '\u0000':  case '\u0001':  case '\u0002':  case '\u0003':
+				case '\u0004':  case '\u0005':  case '\u0006':  case '\u0007':
+				case '\u0008':  case '\t':  case '\u000b':  case '\u000c':
+				case '\u000e':  case '\u000f':  case '\u0010':  case '\u0011':
+				case '\u0012':  case '\u0013':  case '\u0014':  case '\u0015':
+				case '\u0016':  case '\u0017':  case '\u0018':  case '\u0019':
+				case '\u001a':  case '\u001b':  case '\u001c':  case '\u001d':
+				case '\u001e':  case '\u001f':  case ' ':  case '!':
+				case '"':  case '#':  case '$':  case '%':
+				case '&':  case '\'':  case '(':  case ')':
+				case '+':  case ',':  case '-':  case '.':
+				case '/':  case '0':  case '1':  case '2':
+				case '3':  case '4':  case '5':  case '6':
+				case '7':  case '8':  case '9':  case ':':
+				case ';':  case '<':  case '=':  case '>':
+				case '?':  case '@':  case 'A':  case 'B':
+				case 'C':  case 'D':  case 'E':  case 'F':
+				case 'G':  case 'H':  case 'I':  case 'J':
+				case 'K':  case 'L':  case 'M':  case 'N':
+				case 'O':  case 'P':  case 'Q':  case 'R':
+				case 'S':  case 'T':  case 'U':  case 'V':
+				case 'W':  case 'X':  case 'Y':  case 'Z':
+				case '[':  case '\\':  case ']':  case '^':
+				case '_':  case '`':  case 'a':  case 'b':
+				case 'c':  case 'd':  case 'e':  case 'f':
+				case 'g':  case 'h':  case 'i':  case 'j':
+				case 'k':  case 'l':  case 'm':  case 'n':
+				case 'o':  case 'p':  case 'q':  case 'r':
+				case 's':  case 't':  case 'u':  case 'v':
+				case 'w':  case 'x':  case 'y':  case 'z':
+				case '{':  case '|':  case '}':  case '~':
+				case '\u007f':
+				{
+					{
+						match(tokenSet_2_);
+					}
+					break;
+				}
+				default:
+					if (((cached_LA1=='*') && ((cached_LA2 >= '\u0000' && cached_LA2 <= '\u007f')))&&( LA(2)!='/' ))
+					{
+						match('*');
+					}
+					else if ((cached_LA1=='\r') && (cached_LA2=='\n')) {
+						match('\r');
+						match('\n');
+						newline();
+					}
+					else if ((cached_LA1=='\r') && ((cached_LA2 >= '\u0000' && cached_LA2 <= '\u007f'))) {
+						match('\r');
+						newline();
+					}
+				else
+				{
+					goto _loop80_breakloop;
+				}
+				break; }
+			}
+_loop80_breakloop:			;
+		}    // ( ... )*
+		match("*/");
+		_ttype = Token.SKIP;
+		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
+		{
+			_token = makeToken(_ttype);
+			_token.setText(text.ToString(_begin, text.Length-_begin));
+		}
+		returnToken_ = _token;
+	}
+	
 	public void mWS(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
 {
 		int _ttype; IToken _token=null; int _begin=text.Length;
@@ -781,6 +908,18 @@ _loop53_breakloop:			;
 		return data;
 	}
 	public static readonly BitSet tokenSet_0_ = new BitSet(mk_tokenSet_0_());
+	private static long[] mk_tokenSet_1_()
+	{
+		long[] data = { -9217L, -1L, 0L, 0L};
+		return data;
+	}
+	public static readonly BitSet tokenSet_1_ = new BitSet(mk_tokenSet_1_());
+	private static long[] mk_tokenSet_2_()
+	{
+		long[] data = { -4398046520321L, -1L, 0L, 0L};
+		return data;
+	}
+	public static readonly BitSet tokenSet_2_ = new BitSet(mk_tokenSet_2_());
 	
 }
 }
