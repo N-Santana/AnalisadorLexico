@@ -1,6 +1,6 @@
 programa
 
-declare numeric a, numeric b, numeric c , numeric d.
+declare numeric a, numeric b, numeric c , numeric d, string e.
 
 escreva("Programa Teste").
 escreva("Digite A").
@@ -9,7 +9,7 @@ leia(a).
 escreva("Digite B").
 leia (b).
 
-a := b.
+a := 1 + 8.
 //aadssadsadsad
 /*sadsadsads
 
@@ -22,10 +22,12 @@ senao {
 	c:=a-b.
 }
 
+a := 8+5*8-7.
+
 escreva("C e igual a ").
 escreva(c).
-
-d := c*a+b.
+e := "aaaaa".
+//d := c*a+b.
 
 escreva("D e igual a").
 escreva(d).

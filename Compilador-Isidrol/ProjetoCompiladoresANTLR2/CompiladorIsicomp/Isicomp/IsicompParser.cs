@@ -65,6 +65,10 @@ namespace Isicomp
 		public const int WS = 40;
 		
 		
+        string id1OpRelacional = "";
+        string opOpRelacional = "";
+        string id2OpRelacional = "";
+
         Expression expression;
         AbstractOperand numb;
         BinaryOperand sumOrSubt;
@@ -399,6 +403,7 @@ _loop7_breakloop:				;
 			match(T_APARENT);
 			exp_relacional();
 			match(T_FPARENT);
+			ProgramaObj.AddCommand(new CmdSe(id1OpRelacional, opOpRelacional, id2OpRelacional));
 			match(LITERAL_entao);
 			match(T_ACHAVE);
 			{ // ( ... )+
@@ -419,6 +424,7 @@ _loop7_breakloop:				;
 _loop22_breakloop:				;
 			}    // ( ... )+
 			match(T_FCHAVE);
+			ProgramaObj.AddCommand(new FChave());
 			{
 				switch ( LA(1) )
 				{
@@ -426,6 +432,7 @@ _loop22_breakloop:				;
 				{
 					match(LITERAL_senao);
 					match(T_ACHAVE);
+					ProgramaObj.AddCommand(new CmdSenao());
 					{ // ( ... )+
 						int _cnt25=0;
 						for (;;)
@@ -444,6 +451,7 @@ _loop22_breakloop:				;
 _loop25_breakloop:						;
 					}    // ( ... )+
 					match(T_FCHAVE);
+					ProgramaObj.AddCommand(new FChave());
 					break;
 				}
 				case T_ID:
@@ -480,6 +488,7 @@ _loop25_breakloop:						;
 			match(T_APARENT);
 			exp_relacional();
 			match(T_FPARENT);
+			ProgramaObj.AddCommand(new CmdEnqto(id1OpRelacional, opOpRelacional, id2OpRelacional, false));
 			match(T_ACHAVE);
 			{ // ( ... )+
 				int _cnt33=0;
@@ -499,6 +508,7 @@ _loop25_breakloop:						;
 _loop33_breakloop:				;
 			}    // ( ... )+
 			match(T_FCHAVE);
+			ProgramaObj.AddCommand(new FChave());
 		}
 		catch (RecognitionException ex)
 		{
@@ -514,6 +524,7 @@ _loop33_breakloop:				;
 		try {      // for error handling
 			match(LITERAL_faca);
 			match(T_ACHAVE);
+			ProgramaObj.AddCommand(new CmdFaca());
 			{ // ( ... )+
 				int _cnt36=0;
 				for (;;)
@@ -532,10 +543,12 @@ _loop33_breakloop:				;
 _loop36_breakloop:				;
 			}    // ( ... )+
 			match(T_FCHAVE);
+			ProgramaObj.AddCommand(new FChave());
 			match(LITERAL_enquanto);
 			match(T_APARENT);
 			exp_relacional();
 			match(T_FPARENT);
+			ProgramaObj.AddCommand(new CmdEnqto(id1OpRelacional, opOpRelacional, id2OpRelacional, true));
 		}
 		catch (RecognitionException ex)
 		{
@@ -799,7 +812,9 @@ _loop15_breakloop:				;
 				}
 				 }
 			}
+			id1OpRelacional = LT(0).getText();
 			ope_relac();
+			opOpRelacional = LT(0).getText();
 			{
 				switch ( LA(1) )
 				{
@@ -822,6 +837,7 @@ _loop15_breakloop:				;
 				}
 				 }
 			}
+			id2OpRelacional = LT(0).getText();
 		}
 		catch (RecognitionException ex)
 		{

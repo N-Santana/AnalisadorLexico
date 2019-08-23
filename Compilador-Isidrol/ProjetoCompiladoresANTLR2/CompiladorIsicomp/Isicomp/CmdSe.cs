@@ -8,9 +8,20 @@ namespace Isicomp
 {
     public class CmdSe : ICommand
     {
+        private string p1;
+        private string op;
+        private string p2;
+
+        public CmdSe(string p1, string op, string p2)
+        {
+            this.p1 = p1;
+            this.p2 = p2;
+            this.op = op;
+        }
+
         public string ToJava()
         {
-            throw new NotImplementedException();
+            return $"if({p1} {op} {p2}){{";
         }
     }
 }

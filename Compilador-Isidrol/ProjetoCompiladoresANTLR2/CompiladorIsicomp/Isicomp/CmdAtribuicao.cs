@@ -11,10 +11,11 @@ namespace Isicomp
         private string varName;
         private string varValue;
 
-        public CmdAtribuicao(string name, string valor)
+        public CmdAtribuicao(string name, string expression)
         {
+            //expression.eval();
             varName = name;
-            varValue = valor;
+            varValue = expression.ToString();
         }
 
         public string ToJava()

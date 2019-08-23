@@ -9,6 +9,10 @@ options {
 
 class IsicompParser extends Parser;   
 {
+        string id1OpRelacional = "";
+        string opOpRelacional = "";
+        string id2OpRelacional = "";
+
         Expression expression;
         AbstractOperand numb;
         BinaryOperand sumOrSubt;
@@ -45,7 +49,8 @@ comando : cmd_leia T_DOT | cmd_escreva T_DOT | cmd_atribua T_DOT |  cmd_se | cmd
 
 //--------------------- REGRAS ----------------------
 
-exp_ter : exp_fat (oper_ter exp_fat)*;
+exp_ter : exp_fat 
+            (oper_ter exp_fat)*;
 
 exp_fat : (num | T_ID            {
            	  if (!mapaVar.ContainsKey(LT(0).getText())){
@@ -58,17 +63,19 @@ exp_fat : (num | T_ID            {
 exp_relacional : (T_ID  {if (!mapaVar.ContainsKey(LT(0).getText())){
                             throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
                         }}
-             | num) ope_relac (T_ID     {if (!mapaVar.ContainsKey(LT(0).getText())){
+             | num) {id1OpRelacional = LT(0).getText();}
+             ope_relac{opOpRelacional = LT(0).getText();} (T_ID     {if (!mapaVar.ContainsKey(LT(0).getText())){
                                             throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
                                         }}
-             | num);
+             | num) {id2OpRelacional = LT(0).getText();};
 
 termo : num | T_ID            	  {if (!mapaVar.ContainsKey(LT(0).getText())){
                  throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
              }}
              | T_APARENT exp_ter T_FPARENT ; 
 
-cmd_se : "se" T_APARENT exp_relacional T_FPARENT "entao" T_ACHAVE (comando)+ T_FCHAVE ("senao" T_ACHAVE (comando)+ T_FCHAVE )?;
+cmd_se : "se" T_APARENT exp_relacional T_FPARENT {ProgramaObj.AddCommand(new CmdSe(id1OpRelacional, opOpRelacional, id2OpRelacional));} "entao" T_ACHAVE (comando)+ T_FCHAVE {ProgramaObj.AddCommand(new FChave());}
+ ("senao" T_ACHAVE {ProgramaObj.AddCommand(new CmdSenao());} (comando)+ T_FCHAVE {ProgramaObj.AddCommand(new FChave());} )?;
 
 cmd_atribua : T_ID  {   if (!mapaVar.ContainsKey(LT(0).getText())){
                             throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
@@ -79,7 +86,7 @@ cmd_atribua : T_ID  {   if (!mapaVar.ContainsKey(LT(0).getText())){
               T_IGUAL (exp_ter { if(!tID.Equals("numeric")) throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A STRING ID AN A NON STRING ATRIBUITION."); }
               | T_TEXT {    if(!tID.Equals("string")) 
                                 throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A NUMERIC ID AN A NON NUMERIC ATRIBUITION."); 
-                            ProgramaObj.AddCommand(new CmdAtribuicao(ID, LT(0).getText()));
+                                ProgramaObj.AddCommand(new CmdAtribuicao(ID, LT(0).getText()));
                             }
               );     
 
@@ -95,9 +102,13 @@ cmd_leia : "leia" T_APARENT T_ID    {if (!mapaVar.ContainsKey(LT(0).getText())){
                                     }
              T_FPARENT ;
 
-cmd_enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT T_ACHAVE (comando)+ T_FCHAVE;
+cmd_enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT
+{ProgramaObj.AddCommand(new CmdEnqto(id1OpRelacional, opOpRelacional, id2OpRelacional, false));}
+ T_ACHAVE (comando)+ T_FCHAVE {ProgramaObj.AddCommand(new FChave());};
 
-cmd_faca : "faca" T_ACHAVE (comando)+ T_FCHAVE "enquanto" T_APARENT exp_relacional T_FPARENT ;
+cmd_faca : "faca" T_ACHAVE {ProgramaObj.AddCommand(new CmdFaca());}(comando)+ 
+T_FCHAVE {ProgramaObj.AddCommand(new FChave());}
+"enquanto" T_APARENT exp_relacional T_FPARENT {ProgramaObj.AddCommand(new CmdEnqto(id1OpRelacional, opOpRelacional, id2OpRelacional, true));};
 
 //-------------------- DEFINICOES -------------------
 
