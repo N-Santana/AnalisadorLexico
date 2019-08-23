@@ -1,0 +1,28 @@
+/*programa
+
+declare string a, numeric b.
+
+escreva("Programa Teste").
+
+a := "isso  um teste".
+b := 3.
+
+//atribuicao de tipos
+a := b.
+
+fimprog. */
+
+
+programa
+
+declare numeric a, string b.
+
+escreva("Programa Teste").
+
+a := "isso  um teste".
+b := 3.
+
+//atribuicao de tipos
+a := b.
+
+fimprog. 

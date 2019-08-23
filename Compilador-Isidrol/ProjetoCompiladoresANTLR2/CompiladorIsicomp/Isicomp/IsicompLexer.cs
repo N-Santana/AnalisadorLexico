@@ -454,6 +454,18 @@ _loop50_breakloop:			;
 					match(' ');
 					break;
 				}
+				case '0':  case '1':  case '2':  case '3':
+				case '4':  case '5':  case '6':  case '7':
+				case '8':  case '9':
+				{
+					matchRange('0','9');
+					break;
+				}
+				case ':':
+				{
+					match(':');
+					break;
+				}
 				default:
 				{
 					if (_cnt53 >= 1) { goto _loop53_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
@@ -904,7 +916,7 @@ _loop80_breakloop:			;
 	
 	private static long[] mk_tokenSet_0_()
 	{
-		long[] data = { 4294967296L, 576460743847706622L, 0L, 0L};
+		long[] data = { 576179281621680128L, 576460743847706622L, 0L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_0_ = new BitSet(mk_tokenSet_0_());

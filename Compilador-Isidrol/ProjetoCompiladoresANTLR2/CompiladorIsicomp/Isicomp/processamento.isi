@@ -1,0 +1,17 @@
+programa  
+//codigo que exemplifica funcionamento correto de um processamento basico
+
+declare numeric p1, numeric p2, numeric media.
+
+escreva("Digite a nota da p1: ").
+leia(p1).
+
+escreva("Digite a nota da p2: ").
+leia(p2).
+
+media := p1 + p2/2.
+
+escreva("A media das provas eh: ").
+escreva(media).
+
+fimprog.

@@ -100,7 +100,7 @@ T_ID : ('a'..'z' | 'A'..'Z') ('a'..'z'| 'A'..'Z'| '0'..'9')* ;
 
 T_DIGIT : ('0'..'9')+;
 
-T_TEXT : T_ASPAS ('a'..'z' | 'A'..'Z' | ' ')+ T_ASPAS;
+T_TEXT : T_ASPAS ('a'..'z' | 'A'..'Z' | ' ' | '0'..'9' | ':')+ T_ASPAS;
 
 T_SOMA : '+';
 
