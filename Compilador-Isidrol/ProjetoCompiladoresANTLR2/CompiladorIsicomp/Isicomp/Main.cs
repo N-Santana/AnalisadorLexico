@@ -22,8 +22,10 @@ namespace ProjetoCompiladores
 
                 IsicompLexer lexer = new IsicompLexer(stream);
                 IsicompParser parser = new IsicompParser(lexer);
+                parser.ProgramaObj = new Programa("JavaGerado");
                 parser.programa();
                 Console.WriteLine("Compilado com sucesso");
+                parser.ProgramaObj.saveToFile();
 
             }
             catch (ApplicationException ex)

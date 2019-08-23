@@ -65,6 +65,14 @@ namespace Isicomp
 		public const int WS = 40;
 		
 		
+        Expression expression;
+        AbstractOperand numb;
+        BinaryOperand sumOrSubt;
+        AbstractOperand parent;
+        BinaryOperand multOrDiv;
+        char op;
+        public Programa ProgramaObj {get; set;}
+
         // para o mapVar: key = id; value = formato;
         public Dictionary<string, string> mapaVar = new Dictionary<string, string>();
 		
@@ -141,6 +149,18 @@ namespace Isicomp
 _loop4_breakloop:				;
 			}    // ( ... )*
 			match(T_DOT);
+			
+			List<Variavel> vars = new List<Variavel>();
+			string nome;
+			string tipo;
+			foreach(KeyValuePair<string, string> kv in mapaVar)
+			{
+			nome = kv.Key;
+			tipo = kv.Value == "numeric" ? Variavel.NUMERICO : kv.Value == "string" ? Variavel.STRING : throw new ApplicationException("Unexpected type");
+			vars.Add(new Variavel(nome, tipo));
+			}
+			ProgramaObj.Variaveis = vars;
+			
 		}
 		catch (RecognitionException ex)
 		{
@@ -274,6 +294,8 @@ _loop7_breakloop:				;
 			if (!mapaVar.ContainsKey(LT(0).getText())){
 			throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
 			}
+			ProgramaObj.AddCommand(new CmdLeitura(LT(0).getText()));
+			
 			match(T_FPARENT);
 		}
 		catch (RecognitionException ex)
@@ -312,6 +334,7 @@ _loop7_breakloop:				;
 				}
 				 }
 			}
+			ProgramaObj.AddCommand(new CmdEscrita(LT(0).getText()));
 			match(T_FPARENT);
 		}
 		catch (RecognitionException ex)
@@ -330,6 +353,7 @@ _loop7_breakloop:				;
 			if (!mapaVar.ContainsKey(LT(0).getText())){
 			throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
 			}
+			string ID = LT(0).getText();
 			string tID = mapaVar[LT(0).getText()];
 			
 			match(T_IGUAL);
@@ -346,7 +370,10 @@ _loop7_breakloop:				;
 				case T_TEXT:
 				{
 					match(T_TEXT);
-					if(!tID.Equals("string")) throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A NUMERIC ID AN A NON NUMERIC ATRIBUITION.");
+					if(!tID.Equals("string")) 
+					throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A NUMERIC ID AN A NON NUMERIC ATRIBUITION."); 
+					ProgramaObj.AddCommand(new CmdAtribuicao(ID, LT(0).getText()));
+					
 					break;
 				}
 				default:

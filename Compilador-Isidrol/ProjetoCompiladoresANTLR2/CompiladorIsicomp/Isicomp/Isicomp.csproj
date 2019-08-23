@@ -57,11 +57,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractOperand.cs" />
+    <Compile Include="BinaryOperand.cs" />
+    <Compile Include="CmdAtribuicao.cs" />
+    <Compile Include="CmdEscrita.cs" />
+    <Compile Include="CmdLeitura.cs" />
+    <Compile Include="CmdSe.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="Expression.cs" />
     <Compile Include="IsicompLexer.cs" />
     <Compile Include="IsicompParser.cs" />
     <Compile Include="IsicompParserTokenTypes.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Programa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnaryOperand.cs" />
+    <Compile Include="Variavel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

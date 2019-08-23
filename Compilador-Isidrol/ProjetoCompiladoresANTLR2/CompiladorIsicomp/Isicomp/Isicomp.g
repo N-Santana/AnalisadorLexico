@@ -9,6 +9,14 @@ options {
 
 class IsicompParser extends Parser;   
 {
+        Expression expression;
+        AbstractOperand numb;
+        BinaryOperand sumOrSubt;
+        AbstractOperand parent;
+        BinaryOperand multOrDiv;
+        char op;
+        public Programa ProgramaObj {get; set;}
+
         // para o mapVar: key = id; value = formato;
         public Dictionary<string, string> mapaVar = new Dictionary<string, string>();
 }
@@ -17,7 +25,19 @@ class IsicompParser extends Parser;
 programa :  "programa" declare blococomando ;
 
 declare : "declare"  formato T_ID {mapaVar.Add(LT(0).getText(), LT(-1).getText());}
-         (T_COMMA formato T_ID {mapaVar.Add(LT(0).getText(), LT(-1).getText());})* T_DOT;
+         (T_COMMA formato T_ID {mapaVar.Add(LT(0).getText(), LT(-1).getText());})* T_DOT
+         {
+             List<Variavel> vars = new List<Variavel>();
+             string nome;
+             string tipo;
+             foreach(KeyValuePair<string, string> kv in mapaVar)
+             {
+                 nome = kv.Key;
+                 tipo = kv.Value == "numeric" ? Variavel.NUMERICO : kv.Value == "string" ? Variavel.STRING : throw new ApplicationException("Unexpected type");
+                 vars.Add(new Variavel(nome, tipo));
+             }
+             ProgramaObj.Variaveis = vars;
+         };
 
 blococomando : (comando)+ "fimprog" ;
 
@@ -53,20 +73,26 @@ cmd_se : "se" T_APARENT exp_relacional T_FPARENT "entao" T_ACHAVE (comando)+ T_F
 cmd_atribua : T_ID  {   if (!mapaVar.ContainsKey(LT(0).getText())){
                             throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
                         }
+                        string ID = LT(0).getText();
                         string tID = mapaVar[LT(0).getText()];
                     }
               T_IGUAL (exp_ter { if(!tID.Equals("numeric")) throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A STRING ID AN A NON STRING ATRIBUITION."); }
-              | T_TEXT {   if(!tID.Equals("string")) throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A NUMERIC ID AN A NON NUMERIC ATRIBUITION."); }
+              | T_TEXT {    if(!tID.Equals("string")) 
+                                throw new ApplicationException(" MISMATCHED TYPES ATRIBUITION BETWEEN A NUMERIC ID AN A NON NUMERIC ATRIBUITION."); 
+                            ProgramaObj.AddCommand(new CmdAtribuicao(ID, LT(0).getText()));
+                            }
               );     
 
 cmd_escreva : "escreva" T_APARENT (T_ID    {if (!mapaVar.ContainsKey(LT(0).getText())){
                                                 throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
                                             }}
-             | T_TEXT) T_FPARENT ;
+             | T_TEXT) {ProgramaObj.AddCommand(new CmdEscrita(LT(0).getText()));} T_FPARENT ;
 
 cmd_leia : "leia" T_APARENT T_ID    {if (!mapaVar.ContainsKey(LT(0).getText())){
                                         throw new ApplicationException("ERROR ID "+LT(0).getText()+" not declared!");
-                                    }}
+                                    }
+                                    ProgramaObj.AddCommand(new CmdLeitura(LT(0).getText()));
+                                    }
              T_FPARENT ;
 
 cmd_enquanto : "enquanto" T_APARENT exp_relacional T_FPARENT T_ACHAVE (comando)+ T_FCHAVE;
