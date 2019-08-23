@@ -17,7 +17,7 @@ namespace Isicomp
 
         public String ToJava()
         {
-            return idVar + "=" + Programa.INPUT + ".nextFloat();";
+            return idVar + "=" + Programa.INPUT + ".nextDouble();";
         }
     }
 }

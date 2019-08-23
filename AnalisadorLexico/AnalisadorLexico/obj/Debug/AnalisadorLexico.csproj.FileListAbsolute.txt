@@ -1,7 +1,0 @@
-C:\Users\ailat\Documents\DEV\AnalisadorLexico\AnalisadorLexico\AnalisadorLexico\bin\Debug\AnalisadorLexico.exe.config
-C:\Users\ailat\Documents\DEV\AnalisadorLexico\AnalisadorLexico\AnalisadorLexico\bin\Debug\AnalisadorLexico.exe
-C:\Users\ailat\Documents\DEV\AnalisadorLexico\AnalisadorLexico\AnalisadorLexico\bin\Debug\AnalisadorLexico.pdb
-C:\Users\ailat\Documents\DEV\AnalisadorLexico\AnalisadorLexico\AnalisadorLexico\obj\Debug\AnalisadorLexico.csprojAssemblyReference.cache
-C:\Users\ailat\Documents\DEV\AnalisadorLexico\AnalisadorLexico\AnalisadorLexico\obj\Debug\AnalisadorLexico.csproj.CoreCompileInputs.cache
-C:\Users\ailat\Documents\DEV\AnalisadorLexico\AnalisadorLexico\AnalisadorLexico\obj\Debug\AnalisadorLexico.exe
-C:\Users\ailat\Documents\DEV\AnalisadorLexico\AnalisadorLexico\AnalisadorLexico\obj\Debug\AnalisadorLexico.pdb

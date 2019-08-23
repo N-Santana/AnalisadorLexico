@@ -1,0 +1,18 @@
+programa  
+//codigo que exemplifica funcionamento correto de um processamento basico
+declare numeric n, numeric fat, string texto.
+
+fat := 1.
+texto := "Digite o valor que deseja calcular o fatorial".
+escreva(texto).
+leia(n).
+
+enquanto(n > 1){
+    fat := n*fat.
+    n := n - 1.
+}
+
+
+escreva(fat).
+
+fimprog.

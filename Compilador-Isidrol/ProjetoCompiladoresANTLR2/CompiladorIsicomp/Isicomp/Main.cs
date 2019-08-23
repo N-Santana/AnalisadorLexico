@@ -15,7 +15,7 @@ namespace ProjetoCompiladores
             try
             {
                 Console.WriteLine("Digite o nome do arquivo: ");
-                string fileName = "prog.isi";// Console.ReadLine();
+                string fileName = Console.ReadLine();
                 string progContent = File.ReadAllText($"..\\..\\{fileName}");
 
                 byte[] byteArray = Encoding.UTF8.GetBytes(progContent);
@@ -25,8 +25,8 @@ namespace ProjetoCompiladores
                 IsicompParser parser = new IsicompParser(lexer);
                 parser.ProgramaObj = new Programa("JavaGerado");
                 parser.programa();
-                Console.WriteLine("Compilado com sucesso");
                 parser.ProgramaObj.saveToFile();
+                
 
             }
             catch (ApplicationException ex)
@@ -39,6 +39,7 @@ namespace ProjetoCompiladores
             }
             finally
             {
+                Console.WriteLine("Fim.");
                 Console.ReadKey();
             }
         }
