@@ -1,6 +1,6 @@
 programa
 
-declare numeric a, numeric b, numeric c , numeric d, string e.
+declare numeric a, numeric b, numeric c, numeric e.
 
 escreva("Programa Teste").
 escreva("Digite A").
@@ -8,13 +8,13 @@ leia(a).
 
 escreva("Digite B").
 leia (b).
-
+//b := "o.
 a := 1 + 8.
 //aadssadsadsad
 /*sadsadsads
 
 adsad*/
-
+e := "1".
 se(a<b) entao {
 	c := a+b.
 }
@@ -30,13 +30,12 @@ e := "aaaaa".
 //d := c*a+b.
 
 escreva("D e igual a").
-escreva(d).
+//escreva(d).
 
 faca {
 	a := 2,2.
-	a := a + 3,3.
-	d := d - 1.
-} enquanto (d > 0)
+	a := a + 0,3.
+} enquanto (a > 0)
 
 enquanto (a > 0) {
 	a := a - 1.

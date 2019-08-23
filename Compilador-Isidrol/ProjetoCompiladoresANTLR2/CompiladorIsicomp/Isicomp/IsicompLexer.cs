@@ -42,27 +42,27 @@ namespace Isicomp
 		public const int T_COMMA = 7;
 		public const int T_DOT = 8;
 		public const int LITERAL_fimprog = 9;
-		public const int T_APARENT = 10;
-		public const int T_FPARENT = 11;
-		public const int LITERAL_se = 12;
-		public const int LITERAL_entao = 13;
-		public const int T_ACHAVE = 14;
-		public const int T_FCHAVE = 15;
-		public const int LITERAL_senao = 16;
-		public const int T_IGUAL = 17;
-		public const int T_TEXT = 18;
-		public const int LITERAL_escreva = 19;
-		public const int LITERAL_leia = 20;
-		public const int LITERAL_enquanto = 21;
-		public const int LITERAL_faca = 22;
-		public const int LITERAL_numeric = 23;
-		public const int LITERAL_string = 24;
-		public const int T_SOMA = 25;
-		public const int T_SUBT = 26;
-		public const int T_DIV = 27;
-		public const int T_MULT = 28;
-		public const int T_UNDERS = 29;
-		public const int T_DIGIT = 30;
+		public const int T_SOMA = 10;
+		public const int T_SUBT = 11;
+		public const int T_num = 12;
+		public const int T_DIV = 13;
+		public const int T_MULT = 14;
+		public const int T_APARENT = 15;
+		public const int T_FPARENT = 16;
+		public const int LITERAL_se = 17;
+		public const int LITERAL_entao = 18;
+		public const int T_ACHAVE = 19;
+		public const int T_FCHAVE = 20;
+		public const int LITERAL_senao = 21;
+		public const int T_IGUAL = 22;
+		public const int T_TEXT = 23;
+		public const int LITERAL_escreva = 24;
+		public const int LITERAL_leia = 25;
+		public const int LITERAL_enquanto = 26;
+		public const int LITERAL_faca = 27;
+		public const int LITERAL_numeric = 28;
+		public const int LITERAL_string = 29;
+		public const int T_UNDERS = 30;
 		public const int T_MAIOR = 31;
 		public const int T_MENOR = 32;
 		public const int T_MENOR_IGUAL = 33;
@@ -95,18 +95,18 @@ namespace Isicomp
 			caseSensitiveLiterals = true;
 			setCaseSensitive(true);
 			literals = new Hashtable(100, (float) 0.4, null, Comparer.Default);
-			literals.Add("string", 24);
+			literals.Add("string", 29);
 			literals.Add("programa", 4);
-			literals.Add("senao", 16);
-			literals.Add("leia", 20);
+			literals.Add("senao", 21);
+			literals.Add("leia", 25);
 			literals.Add("fimprog", 9);
-			literals.Add("se", 12);
-			literals.Add("escreva", 19);
+			literals.Add("se", 17);
+			literals.Add("escreva", 24);
 			literals.Add("declare", 5);
-			literals.Add("entao", 13);
-			literals.Add("faca", 22);
-			literals.Add("enquanto", 21);
-			literals.Add("numeric", 23);
+			literals.Add("entao", 18);
+			literals.Add("faca", 27);
+			literals.Add("enquanto", 26);
+			literals.Add("numeric", 28);
 		}
 		
 		override public IToken nextToken()			//throws TokenStreamException
@@ -146,7 +146,7 @@ tryAgain:
 						case '4':  case '5':  case '6':  case '7':
 						case '8':  case '9':
 						{
-							mT_DIGIT(true);
+							mT_num(true);
 							theRetToken = returnToken_;
 							break;
 						}
@@ -371,11 +371,11 @@ tryAgain:
 				}
 				default:
 				{
-					goto _loop47_breakloop;
+					goto _loop45_breakloop;
 				}
 				 }
 			}
-_loop47_breakloop:			;
+_loop45_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -385,13 +385,13 @@ _loop47_breakloop:			;
 		returnToken_ = _token;
 	}
 	
-	public void mT_DIGIT(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
+	public void mT_num(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
 {
 		int _ttype; IToken _token=null; int _begin=text.Length;
-		_ttype = T_DIGIT;
+		_ttype = T_num;
 		
 		{ // ( ... )+
-			int _cnt50=0;
+			int _cnt48=0;
 			for (;;)
 			{
 				if (((cached_LA1 >= '0' && cached_LA1 <= '9')))
@@ -400,13 +400,41 @@ _loop47_breakloop:			;
 				}
 				else
 				{
-					if (_cnt50 >= 1) { goto _loop50_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt48 >= 1) { goto _loop48_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				
-				_cnt50++;
+				_cnt48++;
 			}
-_loop50_breakloop:			;
+_loop48_breakloop:			;
 		}    // ( ... )+
+		{
+			if ((cached_LA1==','))
+			{
+				{
+					match(',');
+				}
+				{ // ( ... )+
+					int _cnt52=0;
+					for (;;)
+					{
+						if (((cached_LA1 >= '0' && cached_LA1 <= '9')))
+						{
+							matchRange('0','9');
+						}
+						else
+						{
+							if (_cnt52 >= 1) { goto _loop52_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+						}
+						
+						_cnt52++;
+					}
+_loop52_breakloop:					;
+				}    // ( ... )+
+			}
+			else {
+			}
+			
+		}
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
 			_token = makeToken(_ttype);
@@ -422,7 +450,7 @@ _loop50_breakloop:			;
 		
 		mT_ASPAS(false);
 		{ // ( ... )+
-			int _cnt53=0;
+			int _cnt55=0;
 			for (;;)
 			{
 				switch ( cached_LA1 )
@@ -468,12 +496,12 @@ _loop50_breakloop:			;
 				}
 				default:
 				{
-					if (_cnt53 >= 1) { goto _loop53_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt55 >= 1) { goto _loop55_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				break; }
-				_cnt53++;
+				_cnt55++;
 			}
-_loop53_breakloop:			;
+_loop55_breakloop:			;
 		}    // ( ... )+
 		mT_ASPAS(false);
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
@@ -767,11 +795,11 @@ _loop53_breakloop:			;
 				}
 				else
 				{
-					goto _loop76_breakloop;
+					goto _loop78_breakloop;
 				}
 				
 			}
-_loop76_breakloop:			;
+_loop78_breakloop:			;
 		}    // ( ... )*
 		_ttype = Token.SKIP;
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
@@ -853,11 +881,11 @@ _loop76_breakloop:			;
 					}
 				else
 				{
-					goto _loop80_breakloop;
+					goto _loop82_breakloop;
 				}
 				break; }
 			}
-_loop80_breakloop:			;
+_loop82_breakloop:			;
 		}    // ( ... )*
 		match("*/");
 		_ttype = Token.SKIP;

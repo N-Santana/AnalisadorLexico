@@ -1,4 +1,5 @@
-﻿using Antlr.Runtime;
+﻿using antlr;
+using Antlr.Runtime;
 using Isicomp;
 using System;
 
@@ -32,9 +33,9 @@ namespace ProjetoCompiladores
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-            catch (Exception ex)
+            catch (TokenStreamRecognitionException ex)
             {
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine($"{ex.Message} at {ex.recog.line}:{ex.recog.column}");
             }
             finally
             {

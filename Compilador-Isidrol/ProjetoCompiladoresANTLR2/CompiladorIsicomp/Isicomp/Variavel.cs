@@ -8,8 +8,8 @@ namespace Isicomp
 {
     public class Variavel
     {
-        public const string STRING = "string";
-        public const string NUMERICO = "float";
+        public const string STRING = "String";
+        public const string NUMERICO = "double";
 
         public Variavel(string nome, string tipo)
         {
