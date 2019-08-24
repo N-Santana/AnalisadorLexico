@@ -66,7 +66,7 @@
     <Compile Include="CmdLeitura.cs" />
     <Compile Include="CmdSe.cs" />
     <Compile Include="CmdSenao.cs" />
-    <Compile Include="Command.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="FChave.cs" />
     <Compile Include="IsicompLexer.cs" />

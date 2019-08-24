@@ -24,5 +24,10 @@ namespace Isicomp
         {
             return doWhile ? $"while({p1} {op} {p2});" : $"while({p1} {op} {p2}) {{";
         }
+
+        public string ToC()
+        {
+            return this.ToJava();
+        }
     }
 }

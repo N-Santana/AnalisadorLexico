@@ -16,6 +16,10 @@ namespace ProjetoCompiladores
             {
                 Console.WriteLine("Digite o nome do arquivo: ");
                 string fileName = Console.ReadLine();
+                Console.WriteLine("Digite 1 para java e 2 para C");
+                int language = int.Parse(Console.ReadLine());
+                Console.WriteLine("Digite o nome do arquivo a ser gerado.");
+                string nomeDoArquivo = Console.ReadLine();
                 string progContent = File.ReadAllText($"..\\..\\{fileName}");
 
                 byte[] byteArray = Encoding.UTF8.GetBytes(progContent);
@@ -23,10 +27,14 @@ namespace ProjetoCompiladores
 
                 IsicompLexer lexer = new IsicompLexer(stream);
                 IsicompParser parser = new IsicompParser(lexer);
-                parser.ProgramaObj = new Programa("JavaGerado");
+                parser.ProgramaObj = new Programa(nomeDoArquivo);
                 parser.programa();
-                parser.ProgramaObj.saveToFile();
-                
+                if(language == 1)
+                    parser.ProgramaObj.saveToFile(Programa.Linguagem.JAVA);
+                else if(language == 2)
+                    parser.ProgramaObj.saveToFile(Programa.Linguagem.C);
+                else
+                    Console.WriteLine("Inválido");
 
             }
             catch (ApplicationException ex)

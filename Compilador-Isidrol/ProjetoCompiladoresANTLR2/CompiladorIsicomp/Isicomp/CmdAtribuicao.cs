@@ -22,5 +22,24 @@ namespace Isicomp
         {
             return $"{varName} = {varValue};";
         }
+
+        public string ToC()
+        {
+            if(varValue[0] != '"')
+                return this.ToJava();
+            else
+            {
+                /*varValue = varValue.Substring(1, varValue.Length - 2);
+                var attrib = $"{varName} = {{";
+                foreach (var c in varValue)
+                {
+                    attrib += $"{"'"}{c}{"'"}, ";
+                }
+                attrib += $"{"'"}{"\\"}0{"'"}}}";
+
+                return attrib;*/
+                return this.ToJava();
+            }
+        }
     }
 }

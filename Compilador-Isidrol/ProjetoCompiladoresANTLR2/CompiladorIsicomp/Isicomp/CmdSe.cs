@@ -23,5 +23,10 @@ namespace Isicomp
         {
             return $"if({p1} {op} {p2}){{";
         }
+
+        public string ToC()
+        {
+            return this.ToJava();
+        }
     }
 }

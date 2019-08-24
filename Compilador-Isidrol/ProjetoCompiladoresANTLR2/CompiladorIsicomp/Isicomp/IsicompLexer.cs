@@ -70,9 +70,10 @@ namespace Isicomp
 		public const int T_IGUAL_RELAC = 35;
 		public const int T_DIF = 36;
 		public const int T_ASPAS = 37;
-		public const int T_COMMENT = 38;
-		public const int ML_COMMENT = 39;
-		public const int WS = 40;
+		public const int T_DP = 38;
+		public const int T_COMMENT = 39;
+		public const int ML_COMMENT = 40;
+		public const int WS = 41;
 		
 		public IsicompLexer(Stream ins) : this(new ByteBuffer(ins))
 		{
@@ -168,12 +169,6 @@ tryAgain:
 							theRetToken = returnToken_;
 							break;
 						}
-						case ':':
-						{
-							mT_IGUAL(true);
-							theRetToken = returnToken_;
-							break;
-						}
 						case ',':
 						{
 							mT_COMMA(true);
@@ -240,6 +235,10 @@ tryAgain:
 								mT_TEXT(true);
 								theRetToken = returnToken_;
 							}
+							else if ((cached_LA1==':') && (cached_LA2=='=')) {
+								mT_IGUAL(true);
+								theRetToken = returnToken_;
+							}
 							else if ((cached_LA1=='>') && (cached_LA2=='=')) {
 								mT_MAIOR_IGUAL(true);
 								theRetToken = returnToken_;
@@ -270,6 +269,10 @@ tryAgain:
 							}
 							else if ((cached_LA1=='<') && (true)) {
 								mT_MENOR(true);
+								theRetToken = returnToken_;
+							}
+							else if ((cached_LA1==':') && (true)) {
+								mT_DP(true);
 								theRetToken = returnToken_;
 							}
 						else
@@ -778,6 +781,20 @@ _loop55_breakloop:			;
 		returnToken_ = _token;
 	}
 	
+	public void mT_DP(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
+{
+		int _ttype; IToken _token=null; int _begin=text.Length;
+		_ttype = T_DP;
+		
+		match(':');
+		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
+		{
+			_token = makeToken(_ttype);
+			_token.setText(text.ToString(_begin, text.Length-_begin));
+		}
+		returnToken_ = _token;
+	}
+	
 	public void mT_COMMENT(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
 {
 		int _ttype; IToken _token=null; int _begin=text.Length;
@@ -795,11 +812,11 @@ _loop55_breakloop:			;
 				}
 				else
 				{
-					goto _loop78_breakloop;
+					goto _loop79_breakloop;
 				}
 				
 			}
-_loop78_breakloop:			;
+_loop79_breakloop:			;
 		}    // ( ... )*
 		_ttype = Token.SKIP;
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
@@ -881,11 +898,11 @@ _loop78_breakloop:			;
 					}
 				else
 				{
-					goto _loop82_breakloop;
+					goto _loop83_breakloop;
 				}
 				break; }
 			}
-_loop82_breakloop:			;
+_loop83_breakloop:			;
 		}    // ( ... )*
 		match("*/");
 		_ttype = Token.SKIP;

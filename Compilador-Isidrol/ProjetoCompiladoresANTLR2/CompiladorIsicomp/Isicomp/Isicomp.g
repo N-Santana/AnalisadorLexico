@@ -98,7 +98,14 @@ cmd_atribua : T_ID  {   if (!mapaVar.ContainsKey(LT(0).getText())){
 cmd_escreva : "escreva" T_APARENT (T_ID    {if (!mapaVar.ContainsKey(LT(0).getText())){
                                                 throw new ApplicationException("Not declared ID "+LT(0).getText()+" in line: " + LT(0).getLine() + " column: " + LT(0).getColumn());
                                             }}
-             | T_TEXT) {ProgramaObj.AddCommand(new CmdEscrita(LT(0).getText()));} T_FPARENT ;
+             | T_TEXT) {    string saida = "";
+                            bool existe = mapaVar.TryGetValue(LT(0).getText(), out saida);
+
+                            if(existe)
+                                ProgramaObj.AddCommand(new CmdEscrita(LT(0).getText(), saida));
+                            else
+                                ProgramaObj.AddCommand(new CmdEscrita(LT(0).getText(), "string"));
+                            } T_FPARENT ;
 
 cmd_leia : "leia" T_APARENT T_ID    {if (!mapaVar.ContainsKey(LT(0).getText())){
                                         throw new ApplicationException("Not declared ID "+LT(0).getText()+" in line: " + LT(0).getLine() + " column: " + LT(0).getColumn());
@@ -184,6 +191,8 @@ T_MENOR_IGUAL : "<=";
 T_IGUAL_RELAC : "==";
 
 T_DIF : "!=";
+
+T_DP : ':';
 
 T_COMMENT : "//" (~('\n' | '\r'))* {$setType(Token.SKIP);};
 ML_COMMENT

@@ -12,5 +12,11 @@ namespace Isicomp
         {
             return "do{";
         }
+
+
+        public string ToC()
+        {
+            return this.ToJava();
+        }
     }
 }

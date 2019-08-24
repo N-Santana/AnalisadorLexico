@@ -15,9 +15,14 @@ namespace Isicomp
             this.idVar = idVar;
         }
 
-        public String ToJava()
+        public string ToJava()
         {
             return idVar + "=" + Programa.INPUT + ".nextDouble();";
+        }
+
+        public string ToC()
+        {
+            return $"scanf(\"%lf\", &{idVar});";
         }
     }
 }

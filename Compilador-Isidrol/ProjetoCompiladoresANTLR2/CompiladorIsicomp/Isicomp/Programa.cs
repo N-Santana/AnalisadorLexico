@@ -8,6 +8,12 @@ namespace Isicomp
 {
     public class Programa
     {
+        public enum Linguagem{
+            C,
+            JAVA
+        }
+
+
         public const string INPUT = "__isiC_input_MACRO_v1";
         private string name;
 
@@ -26,26 +32,52 @@ namespace Isicomp
             comandos.Add(c);
         }
 
-        public void saveToFile()
+        public void saveToFile(Linguagem l)
         {
             try
             {
                 StringBuilder f = new StringBuilder();
-                f.Append("public class " + name + "{\n");
-                f.Append("    public static void main(String args[]){\n");
-                f.Append("      java.util.Scanner " + INPUT + "=new java.util.Scanner(System.in);\n");
-                foreach (Variavel variavel in Variaveis)
+                if (l == Linguagem.JAVA)
                 {
-                    f.Append($"{variavel.Tipo} {variavel.Nome};\n");
-                }
-                foreach (ICommand c in comandos)
-                {
-                    f.Append(c.ToJava() + "\n");
-                }
-                f.Append("}");
-                f.Append("}");
+                    f.Append("public class " + name + "{\n");
+                    f.Append("    public static void main(String args[]){\n");
+                    f.Append("      java.util.Scanner " + INPUT + "=new java.util.Scanner(System.in);\n");
+                    foreach (Variavel variavel in Variaveis)
+                    {
+                        f.Append($"{variavel.Tipo} {variavel.Nome};\n");
+                    }
+                    foreach (ICommand c in comandos)
+                    {
+                        f.Append(c.ToJava() + "\n");
+                    }
+                    f.Append("}");
+                    f.Append("}");
 
-                System.IO.File.WriteAllText($"{name}.java", f.ToString());
+                    System.IO.File.WriteAllText($"{name}.java", f.ToString());
+                }
+                else if(l == Linguagem.C)
+                {
+                    f.AppendLine("#include <stdlib.h>");
+                    f.AppendLine("#include <stdio.h>");
+                    f.AppendLine("#include <string.h>");
+                    f.AppendLine("int main() {");
+                    foreach (Variavel variavel in Variaveis)
+                    {
+                        if(variavel.Tipo != "String")
+                            f.Append($"{variavel.Tipo} {variavel.Nome};\n");
+                        else
+                        {
+                            f.Append($"char* {variavel.Nome};");
+                        }
+                    }
+                    foreach (ICommand c in comandos)
+                    {
+                        f.Append(c.ToC() + "\n");
+                    }
+                    f.AppendLine("return 0;");
+                    f.Append("}");
+                    System.IO.File.WriteAllText($"{name}.c", f.ToString());
+                }
             }
             catch (Exception ex)
             {

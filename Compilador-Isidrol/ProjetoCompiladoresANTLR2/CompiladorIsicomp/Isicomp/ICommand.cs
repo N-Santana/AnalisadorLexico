@@ -9,5 +9,6 @@ namespace Isicomp
     public interface ICommand
     {
         string ToJava();
+        string ToC();
     }
 }
